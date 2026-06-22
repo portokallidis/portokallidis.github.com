@@ -3,6 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self' 'wasm-unsafe-eval' 'worker-src';
+               worker-src 'self' blob:;
+               style-src 'self' 'unsafe-inline';
+               img-src 'self' data: blob:;
+               connect-src 'self' https://cdn.jsdelivr.net https://huggingface.co https://cas-bridge.xethub.hf.co https://*.xethub.hf.co https://storage.googleapis.com;
+               font-src 'self' data:;
+               media-src 'self' blob:;
+               object-src 'none';
+               base-uri 'self';
+               form-action 'self';
+               frame-ancestors 'none';"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Nick Portokallidis — Senior full-stack developer with DevOps and AI experience. Local-first portfolio: face blur, voice recruiter, WebLLM demos." />
+    <title>Nick Portokallidis — Mirage</title>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">

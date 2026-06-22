@@ -24,6 +24,7 @@ const MAX_LOG_ENTRIES = 500;
 
 export class PrivacyStore {
   installed = $state(false);
+  inspectorOpen = $state(false);
   modelStatus = $state<ModelStatus>({
     face: 'idle',
     text: 'idle',
@@ -77,6 +78,16 @@ export class PrivacyStore {
     this.blocked = { total: 0, byKind: {} as Record<GuardKind, number> };
     this.uploadedBytes = 0;
     this.log = [];
+  }
+
+  openInspector() {
+    this.inspectorOpen = true;
+  }
+  closeInspector() {
+    this.inspectorOpen = false;
+  }
+  toggleInspector() {
+    this.inspectorOpen = !this.inspectorOpen;
   }
 }
 
