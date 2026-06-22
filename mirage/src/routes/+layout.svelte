@@ -1,9 +1,9 @@
 <script lang="ts">
+  import '$lib/privacy/guard';
   import '../app.css';
   import Nav from '$lib/components/Nav.svelte';
   import TrustBar from '$lib/components/TrustBar.svelte';
   import InspectAI from '$lib/components/InspectAI.svelte';
-  import '$lib/privacy/guard';
   import { privacyStore } from '$lib/privacy/store.svelte';
 
   let { children } = $props();

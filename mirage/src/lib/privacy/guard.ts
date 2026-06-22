@@ -10,13 +10,18 @@ type GuardedXhr = XMLHttpRequest & {
 };
 
 const allowList: RegExp[] = [
-  /^https:\/\/(?:www\.)?nporto\.com(?::\d+)?/i,
-  /^https:\/\/portokallidis\.github\.io/i,
-  /^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?/i,
-  /^https:\/\/cdn\.jsdelivr\.net\//i,
-  /^https:\/\/huggingface\.co\//i,
-  /^https:\/\/cas-bridge\.xethub\.hf\.co\//i,
-  /^https:\/\/[a-z0-9-]+\.xethub\.hf\.co\//i,
+  // Same-origin hosts (custom domain + project-site + dev/preview)
+  /^https:\/\/(?:www\.)?nporto\.com(?::\d+)?\//i,
+  /^https:\/\/portokallidis\.github\.io\//i,
+  /^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?\//i,
+  // jsDelivr: only the two runtime paths the AI libs need.
+  /^https:\/\/cdn\.jsdelivr\.net\/npm\/@mediapipe\/tasks-vision@[\d.]+\//i,
+  /^https:\/\/cdn\.jsdelivr\.net\/npm\/@mlc-ai\/web-llm@[\d.]+\//i,
+  // Hugging Face: only mlc-ai's model repos, only resolve/main
+  /^https:\/\/huggingface\.co\/mlc-ai\/[^/]+\/resolve\/main\//i,
+  /^https:\/\/cas-bridge\.xethub\.hf\.co\/[^/]+\//i,
+  /^https:\/\/[a-z0-9-]+\.xethub\.hf\.co\/[^/]+\//i,
+  // MediaPipe model bucket (defensive)
   /^https:\/\/storage\.googleapis\.com\/mediapipe-models\//i
 ];
 
@@ -48,13 +53,13 @@ function isSameOriginBlob(value: string, origin = currentOrigin()) {
   }
 }
 
-function isLocalScheme(value: string) {
+function isLocalScheme(value: string, origin = currentOrigin()) {
   return (
-    value.startsWith('/') ||
+    (value.startsWith('/') && !value.startsWith('//')) ||
     value.startsWith('#') ||
     value.startsWith('data:') ||
     value.startsWith('about:') ||
-    value.startsWith('blob:')
+    (value.startsWith('blob:') && isSameOriginBlob(value, origin))
   );
 }
 
@@ -62,7 +67,7 @@ export function isAllowed(value: string | URL | Request) {
   const url = normalizeUrl(value);
   const origin = currentOrigin();
 
-  if (isLocalScheme(url)) return true;
+  if (isLocalScheme(url, origin)) return true;
 
   try {
     const parsed = new URL(url, origin);
@@ -116,9 +121,6 @@ function requestBody(input: RequestInfo | URL, init?: RequestInit) {
 export function installGuard() {
   if (typeof window === 'undefined' || _installed) return;
 
-  _installed = true;
-  privacyStore.markInstalled(true);
-
   const originalFetch = window.fetch.bind(window);
   window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
     const url = normalizeUrl(input instanceof Request ? input : input.toString());
@@ -150,9 +152,25 @@ export function installGuard() {
 
   xhrProto.send = function (this: GuardedXhr, body?: Document | XMLHttpRequestBodyInit | null) {
     const meta = this._mirage;
-    const url = meta?.url ?? '<untracked XHR>';
-    const method = meta?.method ?? 'UNKNOWN';
-    const allowed = meta ? isAllowed(url) : true;
+    if (!meta) {
+      log({
+        id: ++_id,
+        ts: Date.now(),
+        kind: 'xhr',
+        method: 'UNKNOWN',
+        url: '<untracked XHR — open() predated guard install>',
+        allowed: false,
+        uploadBytes: measureBody(body)
+      });
+      throw new DOMException(
+        `[mirage-guard] Refused untracked XHR (open() predated guard install)`,
+        'AbortError'
+      );
+    }
+
+    const url = meta.url;
+    const method = meta.method;
+    const allowed = isAllowed(url);
     const uploadBytes = measureBody(body);
 
     log({ id: ++_id, ts: Date.now(), kind: 'xhr', method, url, allowed, uploadBytes });
@@ -168,7 +186,7 @@ export function installGuard() {
         allowed: true,
         status: this.status
       });
-    });
+    }, { once: true });
 
     return originalSend.call(this, body);
   };
@@ -221,15 +239,24 @@ export function installGuard() {
       configurable: true,
       enumerable: descriptor?.enumerable ?? true,
       get(this: HTMLImageElement) {
-        return origGet ? Reflect.apply(origGet, HTMLImageElement.prototype, []) : undefined;
+        return origGet ? Reflect.apply(origGet, this, []) : undefined;
       },
       set(this: HTMLImageElement, value: string) {
         const allowed = isAllowed(value);
         log({ id: ++_id, ts: Date.now(), kind: 'image', url: value, allowed });
+        if (!allowed) {
+          throw new DOMException(
+            `[mirage-guard] Blocked image src ${value} (not in allow-list)`,
+            'SecurityError'
+          );
+        }
         Reflect.apply(origSet, this, [value]);
       }
     });
   }
+
+  _installed = true;
+  privacyStore.markInstalled(true);
 }
 
 installGuard();
