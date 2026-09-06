@@ -6,7 +6,7 @@ const routes = ['/', '/work', '/work/sylva', '/work/carre', '/work/thrombus-plus
 const optionalResource = /lab-artifacts|\/assets\/[^/]*(?:AskWork|webgpu|native-answer|answer-context|transformers|onnxruntime)|huggingface\.co|hf\.co|\.onnx(?:$|\?)|\.wasm(?:$|\?)/i;
 const question = 'What did Nick contribute to CARRE?';
 
-async function withoutLocalAI(page: Page) {
+async function withoutLocalAI (page: Page) {
   await page.addInitScript(() => {
     Object.defineProperty(window, 'LanguageModel', { configurable: true, value: undefined });
     Object.defineProperty(navigator, 'gpu', { configurable: true, value: undefined });
@@ -20,37 +20,37 @@ interface NativeHarness {
   aborted: number;
   activation: boolean | null;
   prompts: string[];
-  progress(value: number): void;
-  finishStartup(): void;
-  finishAnswer(): void;
+  progress (value: number): void;
+  finishStartup (): void;
+  finishAnswer (): void;
 }
 
 interface FixtureSession {
-  destroy(): void;
-  clone(options: { signal: AbortSignal }): Promise<FixtureSession>;
-  prompt(input: string, options: { signal: AbortSignal; responseConstraint: { properties: { citations: { items: { enum: string[] } } } } }): Promise<string>;
+  destroy (): void;
+  clone (options: { signal: AbortSignal }): Promise<FixtureSession>;
+  prompt (input: string, options: { signal: AbortSignal; responseConstraint: { properties: { citations: { items: { enum: string[] } } } } }): Promise<string>;
 }
 
 declare global {
   interface Window { __portfolioNative: NativeHarness }
 }
 
-async function withNativeAI(page: Page, scenario: 'ready' | 'loading' | 'error-first' | 'slow-answer' | 'invalid-answer' = 'ready') {
+async function withNativeAI (page: Page, scenario: 'ready' | 'loading' | 'error-first' | 'slow-answer' | 'invalid-answer' = 'ready') {
   await page.addInitScript((scenario) => {
     Object.defineProperty(navigator, 'gpu', { configurable: true, value: undefined });
     const harness: NativeHarness = {
       creates: 0, clones: 0, destroyed: 0, aborted: 0, activation: null, prompts: [],
-      progress() {}, finishStartup() {}, finishAnswer() {},
+      progress () { }, finishStartup () { }, finishAnswer () { },
     };
     window.__portfolioNative = harness;
     const session = (): FixtureSession => ({
-      destroy() { harness.destroyed++; },
-      async clone({ signal }: { signal: AbortSignal }) {
+      destroy () { harness.destroyed++; },
+      async clone ({ signal }: { signal: AbortSignal }) {
         if (signal.aborted) throw new DOMException('Cancelled', 'AbortError');
         harness.clones++;
         return session();
       },
-      async prompt(input: string, { signal, responseConstraint }: {
+      async prompt (input: string, { signal, responseConstraint }: {
         signal: AbortSignal;
         responseConstraint: { properties: { citations: { items: { enum: string[] } } } };
       }) {
@@ -65,32 +65,34 @@ async function withNativeAI(page: Page, scenario: 'ready' | 'loading' | 'error-f
         return answer;
       },
     });
-    Object.defineProperty(window, 'LanguageModel', { configurable: true, value: {
-      async availability() { return 'available'; },
-      create({ signal, monitor }: {
-        signal: AbortSignal;
-        monitor(value: { addEventListener(name: string, callback: (event: { loaded: number }) => void): void }): void;
-      }) {
-        harness.creates++;
-        harness.activation = navigator.userActivation?.isActive ?? null;
-        signal.addEventListener('abort', () => harness.aborted++, { once: true });
-        monitor({ addEventListener(_name, callback) { harness.progress = value => callback({ loaded: value }); } });
-        if (scenario === 'error-first' && harness.creates === 1) return Promise.reject(new Error('Model preparation failed.'));
-        if (scenario === 'loading') return new Promise(resolve => { harness.finishStartup = () => resolve(session()); });
-        return Promise.resolve(session());
-      },
-    } });
+    Object.defineProperty(window, 'LanguageModel', {
+      configurable: true, value: {
+        async availability () { return 'available'; },
+        create ({ signal, monitor }: {
+          signal: AbortSignal;
+          monitor (value: { addEventListener (name: string, callback: (event: { loaded: number }) => void): void }): void;
+        }) {
+          harness.creates++;
+          harness.activation = navigator.userActivation?.isActive ?? null;
+          signal.addEventListener('abort', () => harness.aborted++, { once: true });
+          monitor({ addEventListener (_name, callback) { harness.progress = value => callback({ loaded: value }); } });
+          if (scenario === 'error-first' && harness.creates === 1) return Promise.reject(new Error('Model preparation failed.'));
+          if (scenario === 'loading') return new Promise(resolve => { harness.finishStartup = () => resolve(session()); });
+          return Promise.resolve(session());
+        },
+      }
+    });
   }, scenario);
 }
 
-async function startConversation(page: Page) {
+async function startConversation (page: Page) {
   await page.goto(askPath);
   await page.getByRole('button', { name: 'Start', exact: true }).click();
   await expect(page.getByRole('log', { name: 'Conversation', exact: true })).toBeVisible();
   await expect(page.getByRole('textbox', { name: 'Your question', exact: true })).toBeVisible();
 }
 
-async function sendQuestion(page: Page, text = question) {
+async function sendQuestion (page: Page, text = question) {
   const replies = page.getByRole('log', { name: 'Conversation' }).getByRole('article');
   const previous = await replies.count();
   await page.getByRole('textbox', { name: 'Your question', exact: true }).fill(text);
@@ -129,7 +131,7 @@ test('every route serves unique complete HTML before JavaScript', async ({ brows
       }
       expect(await page.getByRole('banner').locator('img').evaluate(element => (element as HTMLImageElement).naturalWidth)).toBe(200);
       await expect(page.locator('meta[property="og:site_name"]')).toHaveAttribute('content', 'nporto.com');
-      await expect(page.getByRole('contentinfo').getByRole('link', { name: /previous portfolio/i })).toHaveAttribute('href', 'https://2017.nporto.com/');
+      await expect(page.getByRole('contentinfo').getByRole('link', { name: /previous portfolio/i })).toHaveAttribute('href', 'https://2018.nporto.com/');
       expect(titles.has(title), `${route} has a unique title`).toBe(false);
       titles.add(title);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://nporto.com${route}`);

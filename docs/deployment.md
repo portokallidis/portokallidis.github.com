@@ -67,7 +67,7 @@ After publication, repeat route, redirect, header, canonical, contact, and 404 c
 
 As checked on 5 September 2026, Wrangler is not authenticated to a Cloudflare account.
 No production upload or DNS change was made.
-The requested Previous portfolio link points to `https://2017.nporto.com/`; that hostname still returned NXDOMAIN through Windows DNS and Google Public DNS when rechecked on 6 September 2026.
+The requested Previous portfolio link points to `https://2018.nporto.com/`; that hostname still returned NXDOMAIN through Windows DNS and Google Public DNS when rechecked on 6 September 2026.
 TLS and HTTP reachability cannot be verified until it resolves.
 The link is present in the site; hosting the archived portfolio at that address remains separate deployment work.
 

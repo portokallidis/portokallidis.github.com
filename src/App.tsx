@@ -12,7 +12,7 @@ const Ask = lazy(() => import('./routes/Ask'));
 const Privacy = lazy(() => import('./routes/Privacy'));
 const NotFound = lazy(() => import('./routes/NotFound'));
 
-function NavigationEffects() {
+function NavigationEffects () {
   const location = useLocation();
   const type = useNavigationType();
   const previous = useRef(location.pathname);
@@ -51,7 +51,7 @@ function NavigationEffects() {
   return null;
 }
 
-export default function App() {
+export default function App () {
   useEffect(() => registerPortfolioTools(), []);
   const { pathname } = useLocation();
   const published = routeManifest.some(route => route.path === pathname);
@@ -65,6 +65,6 @@ export default function App() {
         <Routes>{routeManifest.map(route => <Route key={route.path} path={route.path} element={route.kind === 'home' ? <Home /> : route.kind === 'work' ? <Work /> : route.kind === 'case' ? <CaseStudy slug={route.slug} /> : route.kind === 'about' ? <About /> : route.kind === 'ask' ? <Ask /> : <Privacy />} />)}<Route path="/lab" element={<Navigate to="/lab/ask-about-my-work" replace />} /><Route path="/demos" element={<Navigate to="/lab/ask-about-my-work" replace />} /><Route path="*" element={<NotFound />} /></Routes>
       </Suspense>
     </main>
-    <footer className="site-footer wrap"><div><Link className="footer-name" to="/" aria-label="nporto.com, home"><img className="brand-logo" src="/brand/nporto-logo.png" width="40" height="44" alt="nporto.com" /></Link><p>Software Engineer</p></div><nav aria-label="Footer navigation"><Link to="/work">Work</Link><Link to="/about">About</Link><Link to="/privacy">Privacy</Link><a href="https://2017.nporto.com/">Previous portfolio <span aria-hidden="true">↗</span></a><a href={contact.github}>GitHub <span aria-hidden="true">↗</span></a></nav></footer>
+    <footer className="site-footer wrap"><div><Link className="footer-name" to="/" aria-label="nporto.com, home"><img className="brand-logo" src="/brand/nporto-logo.png" width="40" height="44" alt="nporto.com" /></Link><p>Software Engineer</p></div><nav aria-label="Footer navigation"><Link to="/work">Work</Link><Link to="/about">About</Link><Link to="/privacy">Privacy</Link><a href="https://2018.nporto.com/">Previous portfolio <span aria-hidden="true">↗</span></a><a href={contact.github}>GitHub <span aria-hidden="true">↗</span></a></nav></footer>
   </>;
 }

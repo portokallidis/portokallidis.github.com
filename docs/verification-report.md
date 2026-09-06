@@ -10,7 +10,7 @@ All deployment checks below use the built static site through Cloudflare Wrangle
 - Selected work has horizontal hover padding and no numbering.
 - Contact shows Nick Portokallidis and an Email me action, without displaying the email address.
 - About contains the three verified 2026 publications, with DOI links and the original publication metadata.
-- The previous-portfolio link is https://2017.nporto.com/.
+- The previous-portfolio link is https://2018.nporto.com/.
 - Eight canonical routes and a real static 404 page are prerendered, with unique metadata, a shared sitemap manifest, and direct legacy redirects.
 - No production page contains a recording selector, mode menu, downloadable CV, synthetic answer, or developer evaluation interface.
 
