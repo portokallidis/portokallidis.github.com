@@ -1,6 +1,6 @@
 export const siteOrigin = import.meta.env?.VITE_SITE_ORIGIN ?? 'https://nporto.com';
 export const routeManifest = [
-  { path: '/', title: 'nporto.com | Software Engineer', description: 'Architecture and hands-on development, with experience in technical leadership, MVP delivery, and healthcare informatics. Explore projects and get in touch.', kind: 'home' },
+  { path: '/', title: 'nporto.com | Nick Portokallidis - Software Engineer', description: 'Architecture and hands-on development, with experience in technical leadership, MVP delivery, and healthcare informatics. Explore projects and get in touch.', kind: 'home' },
   { path: '/work', title: 'Selected work | nporto.com', description: 'Technical leadership, healthcare knowledge systems, and software delivery across industries. Explore the contributions of Nick Portokallidis.', kind: 'work' },
   { path: '/work/sylva', title: 'SYLVA AG: technical leadership | nporto.com', description: 'Architecture, technical guidance, code review, and hands-on development for an integrated educational platform at SYLVA AG, 2017-2024.', kind: 'case', slug: 'sylva' },
   { path: '/work/carre', title: 'CARRE: structuring healthcare knowledge | nporto.com', description: 'Risk data entry, an educational resources ontology, and educational-data aggregation in the CARRE research project, 2014-2016.', kind: 'case', slug: 'carre' },
