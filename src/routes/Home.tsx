@@ -2,10 +2,9 @@ import { Link } from 'react-router';
 import { projects } from '../content';
 import { Arrow, Contact, LabTeaser, ProjectStory } from '../components/Shared';
 
-export default function Home() {
+export default function Home () {
   return <>
     <section className="hero" aria-labelledby="hero-title">
-      <p className="eyebrow role-label">Software Engineer</p>
       <h1 id="hero-title">From idea to<br /><span>working product.</span></h1>
       <p className="hero-description">Architecture and hands-on development, with experience in technical leadership, MVP delivery, and healthcare informatics.</p>
       <div className="hero-actions"><a className="button" href="#selected-work">View my work<Arrow /></a><a className="button button-secondary" href="/#contact">Get in touch<Arrow diagonal /></a></div>
