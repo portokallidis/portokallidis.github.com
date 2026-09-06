@@ -1,0 +1,302 @@
+{
+  "schemaVersion": 1,
+  "corpusHash": "a07ddb48448fe459304e75032c3c3086f114f2bf02b5d917473aad531a392225",
+  "measuredAt": "2026-09-05T15:35:47.992Z",
+  "environment": {
+    "node": "v22.20.0",
+    "platform": "win32"
+  },
+  "retrieval": {
+    "algorithm": "BM25",
+    "k1": 1.2,
+    "b": 0.75,
+    "k": 5
+  },
+  "cases": [
+    {
+      "id": "case-01",
+      "retrievedIds": [
+        "sylva-context",
+        "sylva-overview",
+        "sylva-my-contribution",
+        "about-approach",
+        "sylva-what-this-work-demonstrates"
+      ],
+      "expectedSourceIds": [
+        "sylva-my-contribution"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-02",
+      "retrievedIds": [
+        "sylva-implementation",
+        "sylva-overview",
+        "sylva-context",
+        "sylva-what-this-work-demonstrates",
+        "sylva-my-contribution"
+      ],
+      "expectedSourceIds": [
+        "sylva-implementation"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-03",
+      "retrievedIds": [
+        "sylva-context",
+        "sylva-overview",
+        "sylva-what-this-work-demonstrates",
+        "sylva-my-contribution",
+        "about-approach"
+      ],
+      "expectedSourceIds": [
+        "sylva-context"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-04",
+      "retrievedIds": [
+        "about-approach",
+        "carre-context",
+        "carre-what-this-work-demonstrates",
+        "carre-my-contribution",
+        "carre-overview"
+      ],
+      "expectedSourceIds": [
+        "carre-my-contribution"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-05",
+      "retrievedIds": [
+        "carre-what-this-work-demonstrates",
+        "carre-overview",
+        "carre-my-contribution",
+        "carre-implementation",
+        "electronic-clinical-protocols-overview"
+      ],
+      "expectedSourceIds": [
+        "carre-implementation"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-06",
+      "retrievedIds": [
+        "carre-deliverables-and-evidence",
+        "carre-what-this-work-demonstrates",
+        "carre-my-contribution",
+        "carre-implementation",
+        "carre-context"
+      ],
+      "expectedSourceIds": [
+        "carre-deliverables-and-evidence"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-07",
+      "retrievedIds": [
+        "thrombus-plus-wearable-systems",
+        "thrombus-plus-overview",
+        "thrombus-plus-what-this-work-demonstrates",
+        "thrombus-plus-context",
+        "thrombus-plus-risk-estimation-and-interaction"
+      ],
+      "expectedSourceIds": [
+        "thrombus-plus-wearable-systems"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-08",
+      "retrievedIds": [
+        "thrombus-plus-what-this-work-demonstrates",
+        "thrombus-plus-integration",
+        "thrombus-plus-my-contribution",
+        "thrombus-plus-overview",
+        "thrombus-plus-context"
+      ],
+      "expectedSourceIds": [
+        "thrombus-plus-integration"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-09",
+      "retrievedIds": [
+        "culcha-overview",
+        "carre-my-contribution",
+        "thrombus-plus-what-this-work-demonstrates",
+        "sylva-what-this-work-demonstrates",
+        "thrombus-plus-my-contribution"
+      ],
+      "expectedSourceIds": [
+        "culcha-overview"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-10",
+      "retrievedIds": [
+        "bliss-overview",
+        "about-approach",
+        "carre-what-this-work-demonstrates",
+        "about-publication-5",
+        "carre-deliverables-and-evidence"
+      ],
+      "expectedSourceIds": [
+        "bliss-overview"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-11",
+      "retrievedIds": [
+        "travojo-overview",
+        "carre-what-this-work-demonstrates",
+        "naroclips-overview",
+        "culcha-overview",
+        "pagenews-overview"
+      ],
+      "expectedSourceIds": [
+        "travojo-overview"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-12",
+      "retrievedIds": [
+        "pagenews-overview",
+        "carre-what-this-work-demonstrates",
+        "about-approach",
+        "carre-my-contribution",
+        "thrombus-plus-what-this-work-demonstrates"
+      ],
+      "expectedSourceIds": [
+        "pagenews-overview"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-13",
+      "retrievedIds": [
+        "naroclips-overview",
+        "carre-my-contribution",
+        "about-approach",
+        "carre-what-this-work-demonstrates",
+        "thrombus-plus-what-this-work-demonstrates"
+      ],
+      "expectedSourceIds": [
+        "naroclips-overview"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-14",
+      "retrievedIds": [
+        "electronic-clinical-protocols-overview",
+        "about-approach",
+        "about-publication-6",
+        "about-publication-3",
+        "thrombus-plus-context"
+      ],
+      "expectedSourceIds": [
+        "electronic-clinical-protocols-overview"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-15",
+      "retrievedIds": [
+        "about-education-1",
+        "about-approach"
+      ],
+      "expectedSourceIds": [
+        "about-education-1"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-16",
+      "retrievedIds": [
+        "about-publication-5",
+        "carre-deliverables-and-evidence",
+        "carre-overview",
+        "about-publication-1",
+        "carre-my-contribution"
+      ],
+      "expectedSourceIds": [
+        "about-publication-5"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-23",
+      "retrievedIds": [
+        "sylva-context",
+        "sylva-overview",
+        "sylva-my-contribution",
+        "sylva-what-this-work-demonstrates",
+        "about-approach"
+      ],
+      "expectedSourceIds": [
+        "sylva-context"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-24",
+      "retrievedIds": [
+        "carre-my-contribution",
+        "carre-overview",
+        "carre-context",
+        "carre-what-this-work-demonstrates",
+        "thrombus-plus-what-this-work-demonstrates"
+      ],
+      "expectedSourceIds": [
+        "carre-overview"
+      ],
+      "found": 1,
+      "required": 1
+    },
+    {
+      "id": "case-25",
+      "retrievedIds": [
+        "thrombus-plus-overview",
+        "thrombus-plus-context",
+        "thrombus-plus-integration",
+        "thrombus-plus-what-this-work-demonstrates",
+        "thrombus-plus-my-contribution"
+      ],
+      "expectedSourceIds": [
+        "thrombus-plus-context"
+      ],
+      "found": 1,
+      "required": 1
+    }
+  ],
+  "evidenceFound": 19,
+  "evidenceRequired": 19,
+  "modelEvaluation": "not-run"
+}

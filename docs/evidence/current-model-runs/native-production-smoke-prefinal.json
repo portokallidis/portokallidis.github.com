@@ -1,0 +1,55 @@
+{
+  "startedAt": "2026-09-06T10:01:18.305Z",
+  "recorderUrl": "http://127.0.0.1:5173/recorder.html",
+  "profile": "C:\\Users\\porto\\projects\\portokallidis.github.com\\.build\\native-chrome",
+  "modelRevision": null,
+  "modelRevisionStatus": "not-exposed",
+  "browserFeatureOverrides": false,
+  "result": "answered",
+  "browserVersion": "152.0.7977.82",
+  "productionUrl": "http://127.0.0.1:8787/lab/ask-about-my-work",
+  "responseStatus": 200,
+  "contentSecurityPolicy": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://huggingface.co https://*.hf.co; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+  "beforeStartArtifactRequests": [],
+  "availability": {
+    "apiPresent": true,
+    "availability": "available"
+  },
+  "startupMs": 14406,
+  "loadingStates": [
+    "Loading the chat…Cancel",
+    "Preparing the browser model."
+  ],
+  "question": "What did Nick Portokallidis contribute to CARRE?",
+  "answer": "My work covered the Risk Data Entry System V2, development of the Educational Resources Ontology, and the Educational Data Aggregator. These contributions combined application development with the representation and aggregation of healthcare educational information.",
+  "label": "ANSWERED LOCALLY",
+  "citations": [
+    {
+      "title": "CARRE / My contribution ↗",
+      "href": "/work/carre#my-contribution"
+    }
+  ],
+  "pageRequests": [
+    "http://127.0.0.1:8787/lab/ask-about-my-work",
+    "http://127.0.0.1:8787/assets/index-B-vqs8qG.js",
+    "http://127.0.0.1:8787/assets/rolldown-runtime-hePW80VL.js",
+    "http://127.0.0.1:8787/assets/index-Brcj-hDt.css",
+    "http://127.0.0.1:8787/brand/nporto-logo.png",
+    "http://127.0.0.1:8787/assets/Ask-D_z6PHwl.js",
+    "http://127.0.0.1:8787/assets/Shared-CHerWGEO.js",
+    "http://127.0.0.1:8787/assets/AskWork-BeRpI3FF.js",
+    "http://127.0.0.1:8787/assets/display-name-Qa1gPuQe.js",
+    "http://127.0.0.1:8787/assets/types-GQj5rCsY.js",
+    "http://127.0.0.1:8787/assets/corpus-BNb-DeGO.js",
+    "http://127.0.0.1:8787/assets/retrieval-T869B5ly.js",
+    "http://127.0.0.1:8787/assets/AskWork-byREHuZr.css",
+    "http://127.0.0.1:8787/lab-artifacts/corpus.json",
+    "http://127.0.0.1:8787/assets/native-answer-CDW9a8Uc.js",
+    "http://127.0.0.1:8787/assets/answer-context-DCxqetnl.js"
+  ],
+  "attempts": [],
+  "browserErrors": [],
+  "recorderState": "- link \"Skip to content\":\n  - /url: \"#main-content\"\n- banner:\n  - link \"nporto.com, home\":\n    - /url: /\n    - img \"nporto.com\"\n  - navigation \"Main navigation\":\n    - link \"Work\":\n      - /url: /work\n    - link \"About\":\n      - /url: /about\n    - link \"Ask\":\n      - /url: /lab/ask-about-my-work\n    - link \"Contact\":\n      - /url: /#contact\n- main:\n  - paragraph: A conversation, on your device\n  - heading \"Ask about my work.\" [level=1]\n  - paragraph: Explore my projects, experience, and research. Follow the sources behind each answer.\n  - region \"Portfolio chat\":\n    - status: On-device chat\n    - button \"Clear conversation\"\n    - log \"Conversation\":\n      - text: \"You:\"\n      - paragraph: What did Nick Portokallidis contribute to CARRE?\n      - 'article \"Reply to: What did Nick Portokallidis contribute to CARRE?\"':\n        - paragraph: Answered locally\n        - paragraph: My work covered the Risk Data Entry System V2, development of the Educational Resources Ontology, and the Educational Data Aggregator. These contributions combined application development with the representation and aggregation of healthcare educational information.\n        - list \"Supporting sources\":\n          - listitem:\n            - link \"CARRE / My contribution\":\n              - /url: /work/carre#my-contribution\n    - text: Your question\n    - textbox \"Your question\":\n      - /placeholder: Ask about my work…\n    - paragraph: Enter to send · Shift + Enter for a new line\n    - button \"Send\"\n  - paragraph:\n    - text: Questions stay in this tab. Check linked sources for accuracy.\n    - link \"Privacy\":\n      - /url: /privacy\n- contentinfo:\n  - link \"nporto.com, home\":\n    - /url: /\n    - img \"nporto.com\"\n  - paragraph: Software Engineer\n  - navigation \"Footer navigation\":\n    - link \"Work\":\n      - /url: /work\n    - link \"About\":\n      - /url: /about\n    - link \"Privacy\":\n      - /url: /privacy\n    - link \"Previous portfolio\":\n      - /url: https://2017.nporto.com/\n    - link \"GitHub\":\n      - /url: https://github.com/portokallidis",
+  "screenshot": "C:\\Users\\porto\\projects\\portokallidis.github.com\\.build\\native-production-smoke.png",
+  "finishedAt": "2026-09-06T10:01:46.254Z"
+}

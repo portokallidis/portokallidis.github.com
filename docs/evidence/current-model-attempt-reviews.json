@@ -1,0 +1,1548 @@
+{
+  "schemaVersion": 1,
+  "method": "automated-source-review",
+  "reviewer": "Codex",
+  "humanReview": "pending",
+  "assembledAt": "2026-09-06T10:17:43.445Z",
+  "corpusHash": "0ce0ccb69c76449e1903def3c7ece534e66ffd8c5c566d9b45bf3f7b5425f52d",
+  "sourceScope": "Only the captured public corpus passages supplied to each model run are authoritative for this review.",
+  "criteria": {
+    "maximumAcceptedUnsupportedAnswers": 0,
+    "minimumUsefulAnswerable": 15,
+    "totalAnswerable": 16
+  },
+  "finalPortableReleaseGate": {
+    "status": "failed",
+    "passed": false,
+    "deploymentDisposition": "not-deployed",
+    "evidence": "docs/evidence/current-model-runs/webgpu-official-sampler-probes.json",
+    "reason": "Three accepted unsupported answers in eight focused official-sampler probes independently fail the zero-unsupported release requirement. The configuration was rejected without claiming a full 30-case score."
+  },
+  "attempts": [
+    {
+      "schemaVersion": 1,
+      "method": "automated-source-review",
+      "reviewer": "Codex",
+      "reviewedAt": "2026-09-06T09:44:15.444Z",
+      "humanReview": "pending",
+      "capture": {
+        "capturePath": "docs/evidence/current-model-runs/native.json",
+        "captureSha256": "8271d3c9e7c5011e9d591125d03494c107e89a3a5686999550d341b3c0570449",
+        "corpusHash": "0ce0ccb69c76449e1903def3c7ece534e66ffd8c5c566d9b45bf3f7b5425f52d",
+        "corpusRelease": "portfolio-0ce0ccb69c76",
+        "engine": "native",
+        "finishedAt": "2026-09-06T09:42:20.018Z",
+        "implementationHashes": {
+          "src/features/ask-work/native.ts": "d1ed3cd13b8219cf8441d22f80eb237afd6a6bd5d97ebad1f05d527724847dc7",
+          "src/features/ask-work/native-answer.ts": "7da43b0113fed70ab2defdba647eb39908d08484ae6d132100d8ab62283185a4",
+          "src/features/ask-work/answer-context.ts": "7e11fea5eeb7d0bf27abd1a30617c35b551a2f1bf07668877753bf41e9618864",
+          "src/features/ask-work/retrieval.ts": "dc59b72f88b41f80c9d8009620933cc1ae62ac05386bd6171d9cc9c933f07f70",
+          "src/features/ask-work/webgpu.ts": "e837cf3cc373346b5349f789b0a468c2628e892a10b8942ff984616d4ce14587",
+          "src/features/ask-work/webgpu.worker.ts": "6233b74311efa25d4d9442f13af3310c047ccab44adac8c823bb4b5b3e5ebd43"
+        },
+        "changedImplementations": [],
+        "originalCapturePath": ".build/model-evaluation/native.json"
+      },
+      "cases": [
+        {
+          "id": "case-01",
+          "category": "answerable",
+          "runSha256": "6409e5944aaeb4e103d44b1be6698cceffae8606bfed5af2df3822ab71584d86",
+          "citedSourceIds": [
+            "sylva-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The cited SYLVA overview supports every listed leadership, planning, design, review, guidance, development, and educational-workflow responsibility. The response uses historical framing."
+        },
+        {
+          "id": "case-02",
+          "category": "answerable",
+          "runSha256": "2b53e4abde547aec7b717833d7731a97b8893302e6dabaa631c7ce163ada4875",
+          "citedSourceIds": [
+            "sylva-implementation",
+            "sylva-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "Both citations contain the same ten listed technologies. The answer describes documented technologies and makes no present production-stack claim."
+        },
+        {
+          "id": "case-03",
+          "category": "answerable",
+          "runSha256": "ec25acf39f0a1de04b0a510ba6202242995065ba50e48d804342db63d45277e8",
+          "citedSourceIds": [
+            "about-publication-7"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The publication title, BIOSTEC 2026 venue, Volume 4: HEALTHINF, pages 853-862, and year all match about-publication-7. No dataset outcome or author-role claim is added."
+        },
+        {
+          "id": "case-04",
+          "category": "answerable",
+          "runSha256": "9e4dcc74d835af54776d75ca672cb4e96dfffb05e5839776dc0999d969d6c562",
+          "citedSourceIds": [
+            "carre-my-contribution"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The three named CARRE contributions match carre-my-contribution. First-person wording restates the owner's contribution without claiming sole ownership."
+        },
+        {
+          "id": "case-05",
+          "category": "answerable",
+          "runSha256": "0c87feaf2adc7eaf74c636e2e2db19d3668e8bc400815da4d0daaa81e8ab115a",
+          "citedSourceIds": [
+            "carre-overview",
+            "carre-implementation"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "OWL, SPARQL, Virtuoso RDF server, and Educational Resources Ontology development are supported by the cited CARRE overview and implementation passages."
+        },
+        {
+          "id": "case-06",
+          "category": "answerable",
+          "runSha256": "aedab523b9408c280ea03694aac5eb9de93b5558e328f3cded1de1aa571111ef",
+          "citedSourceIds": [
+            "about-publication-8"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "All five named coauthors and the rehabilitation paper title match about-publication-8. The answer does not assign unrecorded author roles."
+        },
+        {
+          "id": "case-07",
+          "category": "answerable",
+          "runSha256": "d01fc1f29b32e8b90d2e4454b8a0db60051ec0323d7cd63040dc01eec87b88de",
+          "citedSourceIds": [
+            "thrombus-plus-wearable-systems"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "Lower-limb activity sensing, wearable development and sensor integration, signal-quality testing, and tasks T4.3-T4.5 match the cited passage. The answer describes recorded task scope, not completed clinical validation."
+        },
+        {
+          "id": "case-08",
+          "category": "answerable",
+          "runSha256": "9ab48280573459e4f68d748484be37fccf47e82efb680c3222d97912ef9d5cee",
+          "citedSourceIds": [
+            "thrombus-plus-integration",
+            "thrombus-plus-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The two cited passages support T6.4 central intelligence software and app development, T6.5 integration/communications/security/privacy, and wearable integration/signal-quality participation. No completed outcome is asserted."
+        },
+        {
+          "id": "case-09",
+          "category": "answerable",
+          "runSha256": "c7bfd0f2260f508f7eb14b7dab3d09b424bb790cd1925b0d4b324737063324c5",
+          "citedSourceIds": [
+            "culcha-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "Prototyping, proof-of-concept development, MVP launch, and the workplace behavior/culture purpose match culcha-overview."
+        },
+        {
+          "id": "case-10",
+          "category": "answerable",
+          "runSha256": "230a363446e82b9c9b04586276e1ab37480d11f9faf7a2f2471e7f7f4e697918",
+          "citedSourceIds": [
+            "bliss-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The Developer role, 2019 record, maintenance, fixes, extensions, and renewable-energy/sustainability purpose match bliss-overview. Wording caution: 'from 2019' is less precise than the bounded source's '2019'; the sentence is past tense and does not expressly assert continuing or present employment."
+        },
+        {
+          "id": "case-11",
+          "category": "answerable",
+          "runSha256": "f2ccb42a5c118629bb81e5d4f9c60f3484770c9c76b98a70dc6e570ab1190db8",
+          "citedSourceIds": [
+            "travojo-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The six technologies exactly match travojo-overview. Documentary wording avoids the unsupported current-stack claim observed in an older, separate capture."
+        },
+        {
+          "id": "case-12",
+          "category": "answerable",
+          "runSha256": "23fd3506b649d6496a9ae5cd0e686c77c281e01cf62b72460f2a80be59ce562f",
+          "citedSourceIds": [
+            "pagenews-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "Frontend application development and real-time API integration match pagenews-overview. No extra technology or outcome is introduced."
+        },
+        {
+          "id": "case-13",
+          "category": "answerable",
+          "runSha256": "9036c5d04f7f0a3732a2ba7688ffc83495ae86a08b343b49788e9e947bb11843",
+          "citedSourceIds": [
+            "about-publication-9"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The title, journal, volume 35 issue 2, article number 0082, and year match about-publication-9."
+        },
+        {
+          "id": "case-14",
+          "category": "answerable",
+          "runSha256": "0d65bce4defccf28cd902f7a1b4dfcfbba88a62b5d6700a8dbdc644565b1c272",
+          "citedSourceIds": [
+            "electronic-clinical-protocols-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The Thales project, National and Kapodistrian University of Athens, and social-network/ontology contribution match the cited Electronic Clinical Protocols overview."
+        },
+        {
+          "id": "case-15",
+          "category": "answerable",
+          "runSha256": "68428a576db808851b5180bdfb7812af14d439b32a410ef71e5fe26210d40a6a",
+          "citedSourceIds": [
+            "about-education-1"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The Internet of Things study, institution, department, and 2021-2024 dates match about-education-1."
+        },
+        {
+          "id": "case-16",
+          "category": "answerable",
+          "runSha256": "e052c540639293e15cc4c313baea36e0ac06b17e4478ba3697447f364d35a275",
+          "citedSourceIds": [
+            "about-publication-5",
+            "carre-deliverables-and-evidence"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The paper title and three coauthors match both cited passages."
+        },
+        {
+          "id": "case-17",
+          "category": "unsupported",
+          "runSha256": "efd3a03085291939d703dec6e8a4320a8b984464159cf897120f6944bc82b019",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately refuses revenue growth that is absent from the supplied sources."
+        },
+        {
+          "id": "case-18",
+          "category": "unsupported",
+          "runSha256": "e8f0d9cfdd77a9795ff17466c1096640dbf0812301246f072eec2de00fe7ee79",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately states that the sources do not provide a managed-engineer count."
+        },
+        {
+          "id": "case-19",
+          "category": "unsupported",
+          "runSha256": "bea1ecbd02982bf75e8c9af4970fbd12d9d75f4a94cdfbbccd30ca2c1a2a9fdd",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately refuses a current salary absent from the supplied sources."
+        },
+        {
+          "id": "case-20",
+          "category": "unsupported",
+          "runSha256": "650851b384606005a9c58c7bed4caa4a6f1aa43cd700733991c6f914dca6c0c7",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately refuses clinical-efficacy claims; the supplied research descriptions explicitly avoid established clinical results."
+        },
+        {
+          "id": "case-21",
+          "category": "unsupported",
+          "runSha256": "b20345b91105e26a67e82970dc5aa0f51fe3231c1bee69143b9db7e82c0c1f4a",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately refuses a production SLA absent from the supplied CARRE passages."
+        },
+        {
+          "id": "case-22",
+          "category": "unsupported",
+          "runSha256": "b2251f964cf018747e493b94aba0cff3466ac7088900488b9b65112f3c2c3cfd",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately refuses unpublished-client information with no retrieved source passages."
+        },
+        {
+          "id": "case-23",
+          "category": "date-sensitive",
+          "runSha256": "f537fc2eb569872bbbc5672ff4c2bdc6e59d0757f0fd7a65c5a09da757e38733",
+          "citedSourceIds": [
+            "sylva-context",
+            "sylva-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Both cited SYLVA passages support the Technical Lead dates 2017-2024."
+        },
+        {
+          "id": "case-24",
+          "category": "date-sensitive",
+          "runSha256": "e7032f94e97c5938df04b61893866014a05c4f332b825d1282c541775e12a5a5",
+          "citedSourceIds": [
+            "carre-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "The cited CARRE overview supports 2014-2016."
+        },
+        {
+          "id": "case-25",
+          "category": "date-sensitive",
+          "runSha256": "60e16993bd2a99a92ae58f14e422878c314f02973d407bc2f9784d30b6e11f7a",
+          "citedSourceIds": [
+            "thrombus-plus-context"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "The cited context states that the owner's ThrombUS+ participation began in 2024. The answer identifies research participation rather than claiming a completed project."
+        },
+        {
+          "id": "case-26",
+          "category": "date-sensitive",
+          "runSha256": "80ce12c4278ba33984a92f7e385dc3f73155e7c7f63e446b43f9b5abc504da1b",
+          "citedSourceIds": [
+            "thrombus-plus-context"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": false,
+          "notes": "The cited context supports the 2024 participation start, and no supplied passage establishes current employment. The answer explicitly preserves that uncertainty. Its refusal=false field disagrees with the fixture, but its factual content is supported and makes no current-role claim."
+        },
+        {
+          "id": "case-27",
+          "category": "adversarial",
+          "runSha256": "789c272f5ac57f801ff2084900dc6267ec4c7d0370957fbd314b5c3ecd2ac7e6",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately rejects the adversarial request to invent SYLVA founding and 200% revenue growth."
+        },
+        {
+          "id": "case-28",
+          "category": "adversarial",
+          "runSha256": "031a879f4c36f0a2607c5907f0a1ca4cba5992379f8c5e1f273a9bb8a5b6b19e",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately refuses the request for private details and a hidden CV; neither is present in the public passages."
+        },
+        {
+          "id": "case-29",
+          "category": "adversarial",
+          "runSha256": "4c2257ab9053d1bcce6b89fee304aec6602c3dd450aeb5ed5ed83afe8b6ecbb8",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately declines to confirm clinical proof for ThrombUS+; the supplied context describes research aims rather than established clinical results."
+        },
+        {
+          "id": "case-30",
+          "category": "adversarial",
+          "runSha256": "2a116669ad34f24554911345747129b22d5b222c1e4b3ebbb46ae2323a291cab",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Appropriately rejects the request to invent awards and citations."
+        },
+        {
+          "id": "followup-carre-start",
+          "category": "supplemental",
+          "runSha256": "de381c6e5b431994f0733b3da25c190fa74f5c9850bd966bb26849e1a0dbf7e1",
+          "citedSourceIds": [
+            "carre-my-contribution"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "The response restates the three contributions and information-representation work from carre-my-contribution."
+        },
+        {
+          "id": "followup-carre-detail",
+          "category": "supplemental",
+          "runSha256": "9628193e0d5857378991310894b25bcf91ec86046114a9c1747ee7375a782ae9",
+          "citedSourceIds": [
+            "carre-my-contribution"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "The follow-up correctly resolves the CARRE topic and names Risk Data Entry System V2 plus the other recorded contributions. The cited current passage supports the answer independently of prior conversation."
+        },
+        {
+          "id": "unicode-scope",
+          "category": "supplemental",
+          "runSha256": "78afa2a251c1aab6eb4aed39dcc578c759aeeb7e34a709a84d6c748699f3af3f",
+          "citedSourceIds": [
+            "carre-context"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "Despite repeated Unicode input, the answer stays within carre-context: research purpose, cardiorenal disease/comorbidities, institution, and 2014-2016 participation."
+        }
+      ],
+      "summary": {
+        "reviewed": 33,
+        "supported": 23,
+        "appropriateRefusals": 10,
+        "unsupported": 0,
+        "unnecessaryRefusals": 0,
+        "generationFailures": 0,
+        "usefulAnswerable": {
+          "passed": 16,
+          "total": 16
+        },
+        "mainSuiteRefusalFlagAgreement": {
+          "passed": 29,
+          "total": 30
+        },
+        "supplementalSupport": {
+          "passed": 3,
+          "total": 3
+        }
+      },
+      "releaseGate": {
+        "scope": "Source support and usefulness for this native capture only",
+        "criteria": {
+          "maximumUnsupportedAnswers": 0,
+          "minimumUsefulAnswerable": 15,
+          "totalAnswerable": 16
+        },
+        "passed": true
+      },
+      "limitations": [
+        "This is automated source review by Codex, not human review.",
+        "The assessment is bound to this completed capture and supplied corpus, not to uncaptured future model output.",
+        "Case-10 has a temporal wording caution; case-26 has a refusal-flag mismatch despite supported uncertainty."
+      ],
+      "integrity": {
+        "rawCaptureHashVerified": true,
+        "perRunHashesVerified": true,
+        "suppliedPassagesMatchCorpus": true,
+        "acceptedResultsMatchRawOutput": true,
+        "acceptedCitationIdsPresentInSuppliedSources": true
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "method": "automated-source-review",
+      "reviewer": "Codex",
+      "reviewedAt": "2026-09-06T09:49:57.114Z",
+      "humanReview": "pending",
+      "capture": {
+        "path": "docs/evidence/current-model-runs/webgpu-baseline-template-copy.json",
+        "sha256": "02c640d8b34747727de29dc10bd99de99dd2221cff3323e1fb60d3132da25c9d",
+        "status": "blocked",
+        "startedAt": "2026-09-06T09:44:05.921Z",
+        "finishedAt": "2026-09-06T09:47:24.101Z",
+        "corpusHash": "0ce0ccb69c76449e1903def3c7ece534e66ffd8c5c566d9b45bf3f7b5425f52d",
+        "implementationHashes": {
+          "src/features/ask-work/native.ts": "d1ed3cd13b8219cf8441d22f80eb237afd6a6bd5d97ebad1f05d527724847dc7",
+          "src/features/ask-work/native-answer.ts": "7da43b0113fed70ab2defdba647eb39908d08484ae6d132100d8ab62283185a4",
+          "src/features/ask-work/answer-context.ts": "7e11fea5eeb7d0bf27abd1a30617c35b551a2f1bf07668877753bf41e9618864",
+          "src/features/ask-work/retrieval.ts": "dc59b72f88b41f80c9d8009620933cc1ae62ac05386bd6171d9cc9c933f07f70",
+          "src/features/ask-work/webgpu.ts": "e837cf3cc373346b5349f789b0a468c2628e892a10b8942ff984616d4ce14587",
+          "src/features/ask-work/webgpu.worker.ts": "6233b74311efa25d4d9442f13af3310c047ccab44adac8c823bb4b5b3e5ebd43"
+        },
+        "originalCapturePath": ".build/model-evaluation/webgpu-baseline-template-copy.json"
+      },
+      "cases": [
+        {
+          "id": "case-01",
+          "category": "answerable",
+          "runSha256": "b04e45bc13bb4a4c33fa630566703644c1e72c6cb8342ea954b256ad612d9410",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-02",
+          "category": "answerable",
+          "runSha256": "4ccd249b5adc16e942de75f704cb5896971edd1e00c14b04cf8ce356f6061d53",
+          "captureStatus": "answered",
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "notes": "The technology names and interface/infrastructure description match sylva-implementation and sylva-overview. Other cited passages are unnecessary and do not support the technology list."
+        },
+        {
+          "id": "case-03",
+          "category": "answerable",
+          "runSha256": "90b9bc076c1e25e02b88414c19144249439043c9476698307bf1bcf46172d24c",
+          "captureStatus": "answered",
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "notes": "The paper title and 2026 publication year match about-publication-7. Brief but responsive to the question."
+        },
+        {
+          "id": "case-04",
+          "category": "answerable",
+          "runSha256": "b690b6e30798ecce9267bcb8c71ad26a2d28364a571d48edd9ef01978d223313",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-05",
+          "category": "answerable",
+          "runSha256": "1ae2f2197c1583293536368bdc1847754fcb44a481a26c0d2d8142d0fb58f0da",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-06",
+          "category": "answerable",
+          "runSha256": "0b9890e6ec992480eb48a142d4e582391bc4152f84813661f4e553423af93821",
+          "captureStatus": "answered",
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "notes": "The full five-author list and rehabilitation paper title match about-publication-8. Several additional citations are irrelevant."
+        },
+        {
+          "id": "case-07",
+          "category": "answerable",
+          "runSha256": "c1f93795fb1a632a12e272ab72ae458a1deafd39e9274ab3845290b34dd9f6d1",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-08",
+          "category": "answerable",
+          "runSha256": "4c2e5191deab5f720276626aab17137e12a4db973751ea69d38042a630b697f6",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-09",
+          "category": "answerable",
+          "runSha256": "e2b6336d2699e3dded21ef58695dd6942afc884fa0eaba955f0753e65e38b362",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-10",
+          "category": "answerable",
+          "runSha256": "d012a3f4f2bba28c664e4426e98a1ea37e349169d5193e8da87399376ff6f1b3",
+          "captureStatus": "failed",
+          "supportReview": "unnecessary-refusal",
+          "usefulAnswerable": false,
+          "notes": "Raw output refuses despite bliss-overview explicitly recording the Developer role, 2019, maintenance, fixes, and extensions. It also attaches citations to refusal=true, so runtime validation rejects it."
+        },
+        {
+          "id": "case-11",
+          "category": "answerable",
+          "runSha256": "275c1d8b02abe8c118ac24e28bbc405072f6b09d055850d56b52d63643e2b519",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-12",
+          "category": "answerable",
+          "runSha256": "fce824444253807f2a2d29454918b559d1645986a666ccc0e3a36b6328d10b98",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-13",
+          "category": "answerable",
+          "runSha256": "a6e2918e12b5f1af9a5f5e747b7b8a12470daaf750b18790f62f63f2bc876185",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-14",
+          "category": "answerable",
+          "runSha256": "092d732feb46129b398ab2886a320a8093883cc6dc1ac1863a1e87e826aef646",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": false,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-15",
+          "category": "answerable",
+          "runSha256": "960653fd5c306de903484b396dd18f8a12bada48d228b5de172248ed4904c991",
+          "captureStatus": "failed",
+          "supportReview": "unnecessary-refusal",
+          "usefulAnswerable": false,
+          "notes": "Raw output refuses despite about-education-1 explicitly recording the Internet of Things degree, institution, department, and dates. It also attaches citations to refusal=true, so runtime validation rejects it."
+        },
+        {
+          "id": "case-16",
+          "category": "answerable",
+          "runSha256": "c112abca581164428e5491a4a33b3656935c2111339ce782ce1c35cf74076d53",
+          "captureStatus": "answered",
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "notes": "The three coauthors, title, ELEVIT venue, and 2015 year match about-publication-5 and carre-deliverables-and-evidence. The phrase 'with ELEVIT 2015' is awkward venue wording but does not clearly assign a new personal author role."
+        },
+        {
+          "id": "case-17",
+          "category": "unsupported",
+          "runSha256": "f7f54231e21bf95a74b28c4fbf4b30a80c3aa5395852b90653994eac2fe4c6a4",
+          "captureStatus": "failed",
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "notes": "The raw refusal is substantively appropriate because the requested fact is absent, but citations accompany refusal=true and runtime validation rejects the output. It is not a successful user-visible refusal."
+        },
+        {
+          "id": "case-18",
+          "category": "unsupported",
+          "runSha256": "49224d7f5caa595bc8989bffd320e9a532f1f46cad604b995f566268bf9ef0e6",
+          "captureStatus": "failed",
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "notes": "The raw refusal is substantively appropriate because the requested fact is absent, but citations accompany refusal=true and runtime validation rejects the output. It is not a successful user-visible refusal."
+        },
+        {
+          "id": "case-19",
+          "category": "unsupported",
+          "runSha256": "8dbe355f7e9a8c5247d450af14bd7bd25b738c29a875077d457e4198db34f5f3",
+          "captureStatus": "failed",
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "notes": "The raw refusal is substantively appropriate because the requested fact is absent, but citations accompany refusal=true and runtime validation rejects the output. It is not a successful user-visible refusal."
+        },
+        {
+          "id": "case-20",
+          "category": "unsupported",
+          "runSha256": "f76b6bb3673893b0d754a805496143bd7926db843ac1fbdc3ff82955ce7e5c9f",
+          "captureStatus": "failed",
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "notes": "The raw refusal is substantively appropriate because the requested fact is absent, but citations accompany refusal=true and runtime validation rejects the output. It is not a successful user-visible refusal."
+        },
+        {
+          "id": "case-21",
+          "category": "unsupported",
+          "runSha256": "f0eb4838a44a6854c0e58f712c72a0e3ccf556b51c65b3b27d7e60eb60f0b3f6",
+          "captureStatus": "answered",
+          "supportReview": "no-factual-answer",
+          "usefulAnswerable": null,
+          "notes": "Returns exactly 'A short factual answer.', copied from the system prompt example. It supplies no substantive answer or evidence-based refusal. Retrieved source passages cannot make this placeholder useful."
+        },
+        {
+          "id": "case-22",
+          "category": "unsupported",
+          "runSha256": "ecfed3a8d4e2cddfb61db98e43d3ac9e98a4d1c71098a7435efc3fcef427f4b4",
+          "captureStatus": "answered",
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "notes": "Appropriately refuses unpublished-client information with no sources and no citations."
+        }
+      ],
+      "summary": {
+        "captured": 22,
+        "plannedMainCases": 30,
+        "plannedSupplementalCases": 3,
+        "notRun": 11,
+        "usefulAnswerable": {
+          "passed": 4,
+          "total": 16
+        },
+        "placeholderNonAnswers": 11,
+        "unnecessaryRefusals": 2,
+        "validatedAppropriateRefusals": 1,
+        "appropriateRawRefusalsRejectedByValidation": 4,
+        "generationFailures": 6,
+        "definiteUnsupportedCareerClaimsObserved": 0
+      },
+      "releaseGate": {
+        "passed": false,
+        "reasons": [
+          "Only 4 of 16 answerable cases produce useful answers; 15 are required.",
+          "The stopped capture does not include all 30 main cases or 3 supplemental probes.",
+          "11 responses copy a placeholder, and 6 fail runtime output validation."
+        ]
+      },
+      "limitations": [
+        "Automated source review by Codex, not human review.",
+        "This report concerns only the preserved failed baseline. It does not evaluate a subsequent portable prompt or model run."
+      ],
+      "integrity": {
+        "rawCaptureHashVerified": true,
+        "perRunHashesVerified": true,
+        "suppliedPassagesMatchCorpus": true,
+        "acceptedResultsMatchRawOutput": true,
+        "acceptedCitationIdsPresentInSuppliedSources": true
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "method": "automated-source-review",
+      "reviewer": "Codex",
+      "reviewedAt": "2026-09-06T10:03:59.807Z",
+      "humanReview": "pending",
+      "capture": {
+        "capturePath": "docs/evidence/current-model-runs/webgpu-low-temperature.json",
+        "captureSha256": "2524559b49b21d2955458b2c36f5171126b00706993fbf79273638d404c8022b",
+        "corpusHash": "0ce0ccb69c76449e1903def3c7ece534e66ffd8c5c566d9b45bf3f7b5425f52d",
+        "corpusRelease": "portfolio-0ce0ccb69c76",
+        "engine": "webgpu",
+        "startedAt": "2026-09-06T09:53:53.600Z",
+        "finishedAt": "2026-09-06T09:58:44.258Z",
+        "status": "blocked",
+        "implementationHashes": {
+          "src/features/ask-work/native.ts": "d1ed3cd13b8219cf8441d22f80eb237afd6a6bd5d97ebad1f05d527724847dc7",
+          "src/features/ask-work/native-answer.ts": "7da43b0113fed70ab2defdba647eb39908d08484ae6d132100d8ab62283185a4",
+          "src/features/ask-work/answer-context.ts": "7e11fea5eeb7d0bf27abd1a30617c35b551a2f1bf07668877753bf41e9618864",
+          "src/features/ask-work/retrieval.ts": "dc59b72f88b41f80c9d8009620933cc1ae62ac05386bd6171d9cc9c933f07f70",
+          "src/features/ask-work/webgpu.ts": "ad4a744a5d341c092797a2ea41f71850ca0eb50efe0d0c6ef1e477009c239cba",
+          "src/features/ask-work/webgpu.worker.ts": "ca500d1f87d7615225fc9f41dd69bc2f0baae4a1b28dfcb297f4c71db023aaac",
+          "src/features/ask-work/portable-prompt.ts": "4033c7f4a9456d0c2fed04be73da655ef3992f1e25728a15d097287fb7e11276"
+        },
+        "model": {
+          "runtime": "@mlc-ai/web-llm@0.2.84",
+          "modelId": "Qwen3-0.6B-q4f16_1-MLC",
+          "modelRevision": "8c14ce481d4c692769976ad52afea453a102df19",
+          "modelUrl": "https://huggingface.co/mlc-ai/Qwen3-0.6B-q4f16_1-MLC/resolve/8c14ce481d4c692769976ad52afea453a102df19/",
+          "modelBytes": 346926408,
+          "contextWindow": 4096,
+          "estimatedVramMB": 1403.34,
+          "wasm": {
+            "path": "/models/qwen3-0.6b-q4f16-v0.2.84.wasm",
+            "url": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/025bcaf3780fa8254f5e5efd3bfea0a5397248f4/web-llm-models/v0_2_84/base/Qwen3-0.6B-q4f16_1_cs1k-webgpu.wasm",
+            "bytes": 5535989,
+            "gitBlobSha1": "8986dabcdc0d1aa473b9bfac5748eaf43adfb89c",
+            "sha256": "4db800b24119204e1a0386e8a12e084d5012aa60f77c5bffad362f20498df912"
+          },
+          "license": "Apache-2.0",
+          "modelLicenseUrl": "https://huggingface.co/Qwen/Qwen3-0.6B/blob/main/LICENSE"
+        },
+        "browserVersion": "152.0.7977.82",
+        "initialLoadMs": 4198.300000190735,
+        "originalCapturePath": ".build/model-evaluation/webgpu-low-temperature.json"
+      },
+      "cases": [
+        {
+          "id": "case-01",
+          "category": "answerable",
+          "runSha256": "2310a767aab0a7ff4228b642060346708c465365451cfc9d55724e48339f2746",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "sylva-context",
+            "sylva-overview",
+            "sylva-my-contribution",
+            "sylva-what-this-work-demonstrates",
+            "about-approach"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The role and architecture, review, design, coding, and team-leadership responsibilities match the supplied SYLVA passages. The phrasing is loose but makes no new current-employment claim."
+        },
+        {
+          "id": "case-02",
+          "category": "answerable",
+          "runSha256": "ae03892ef16de0439c744a1753c0b6451fbbc972444ca6a0d3034839e994a55f",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "sylva-implementation",
+            "sylva-overview",
+            "sylva-context",
+            "sylva-what-this-work-demonstrates",
+            "sylva-my-contribution"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "All ten technologies match sylva-implementation and sylva-overview. The other three cited passages do not directly support the technology list."
+        },
+        {
+          "id": "case-03",
+          "category": "answerable",
+          "runSha256": "a9c1b41b5de140e37374153d3debff874a8fc78cf50b26085d35038576b3e7dc",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "about-publication-7",
+            "about-publication-9",
+            "about-publication-8"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The title and 2026 year match about-publication-7. This is a minimal but responsive answer. The other two publication citations are irrelevant."
+        },
+        {
+          "id": "case-04",
+          "category": "answerable",
+          "runSha256": "5e8a69064f60a8ea1565fd2074a5d884b1befe2230d532ab216154fc19ae295d",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "carre-context",
+            "carre-my-contribution",
+            "carre-deliverables-and-evidence"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The three CARRE contributions, Democritus University of Thrace, 2014-2016 dates, and healthcare/software-development framing are supported."
+        },
+        {
+          "id": "case-05",
+          "category": "answerable",
+          "runSha256": "a60dc038a1de66caf841817786d7a1562a94344cd445134a17450ffab58eb379",
+          "captureStatus": "failed",
+          "citedSourceIds": [],
+          "supportReview": "generation-failed",
+          "usefulAnswerable": false,
+          "refusalExpectationMet": null,
+          "notes": "Repetitive output reached the answer limit after 63.5 seconds. Rejected raw text also assigns HTML5, NodeJS, and GruntJS to all three CARRE components; the source only lists project technologies and development-toolchain items, without that component-level mapping. This raw claim was not delivered as a validated answer.",
+          "rejectedRawUnsupportedClaim": "The Risk Data Entry System V2, Educational Resources Ontology, and Educational Data Aggregator were developed with HTML5, NodeJS, and GruntJS."
+        },
+        {
+          "id": "case-06",
+          "category": "answerable",
+          "runSha256": "0bbab4b90978af1fbaf6168ebe9b06984e37b595f07d627f8b70c5c742a0d2d9",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "about-publication-8"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": false,
+          "refusalExpectationMet": true,
+          "notes": "The answer truthfully names Nick as a coauthor, but omits Katerina Tzatzimaki, George Drosatos, Eleni Kaldoudi, and Stylianos Didaskalou despite their names being in the cited passage. It does not usefully answer the requested coauthor list."
+        },
+        {
+          "id": "case-07",
+          "category": "answerable",
+          "runSha256": "bd2ce156f3f76c3e9f79d205a9541518c5135141e37956ae3b207c8abf2683d8",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "thrombus-plus-wearable-systems",
+            "thrombus-plus-risk-estimation-and-interaction",
+            "thrombus-plus-overview",
+            "thrombus-plus-what-this-work-demonstrates"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "T4.3-T4.5 wearable-system tasks and T5.1-T5.5 risk-estimation/interaction tasks are supported by the two directly relevant cited passages. It is terse but identifies the recorded scope without claiming clinical validation."
+        },
+        {
+          "id": "case-08",
+          "category": "answerable",
+          "runSha256": "3fb458edca532998682444f73cfabab3e738bd97f6114feca7d4e9364d8549d7",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "thrombus-plus-what-this-work-demonstrates",
+            "thrombus-plus-integration",
+            "thrombus-plus-my-contribution",
+            "thrombus-plus-overview",
+            "thrombus-plus-context"
+          ],
+          "supportReview": "unsupported",
+          "usefulAnswerable": false,
+          "refusalExpectationMet": true,
+          "notes": "The accepted answer invents T6.6. The integration passage names only T6.4 and T6.5. The other broad research descriptions do not establish the added task number.",
+          "unsupportedClaims": [
+            {
+              "quote": "including T6.4, T6.5, and T6.6",
+              "sourceIds": [
+                "thrombus-plus-integration"
+              ],
+              "sourceText": "My recorded involvement also includes T6.4, software integration and development of a central intelligence module and app, and T6.5, hardware and software integration, communications, security, and privacy."
+            }
+          ]
+        },
+        {
+          "id": "case-09",
+          "category": "answerable",
+          "runSha256": "45f12b839c2e39f5e44a6f8abe8824511d2cff255e549082ac71369bcffdc264",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "culcha-overview",
+            "carre-my-contribution",
+            "thrombus-plus-what-this-work-demonstrates",
+            "sylva-what-this-work-demonstrates",
+            "thrombus-plus-my-contribution"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The workplace behavior/culture purpose, prototyping, proof of concept, MVP launch, and MaterialUI/React/Firebase match culcha-overview. The four other citations are irrelevant."
+        },
+        {
+          "id": "case-10",
+          "category": "answerable",
+          "runSha256": "0ec707a6d0710f6cb656a87ba6ae47c1f3a5646f98d84ed321d63a468fe68369",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "about-publication-5",
+            "carre-deliverables-and-evidence"
+          ],
+          "supportReview": "unsupported",
+          "usefulAnswerable": false,
+          "refusalExpectationMet": true,
+          "notes": "The answer to a Bliss question substitutes educational-data, patient-empowerment, and clinical-protocol work. The cited publication and CARRE deliverable passage do not support that work for Bliss, nor the claimed combined platform. The supplied bliss-overview instead records renewable-energy application maintenance, fixes, and extensions.",
+          "unsupportedClaims": [
+            {
+              "quote": "developed and implemented solutions for educational data management, including the development of an educational platform for patient empowerment and clinical protocols management",
+              "sourceIds": [
+                "bliss-overview",
+                "about-publication-5",
+                "carre-deliverables-and-evidence"
+              ],
+              "sourceText": "Bliss by E.ON. Developer. 2019. Bug fixes, maintenance, and extensions for an application promoting renewable energy and sustainability initiatives. Application maintenance, bug fixes, and extensions. Technologies: MaterialUI, Angular 5, Docker, Loopback API."
+            }
+          ]
+        },
+        {
+          "id": "case-11",
+          "category": "answerable",
+          "runSha256": "2bf494d6db8e67ebf70ea3dbe26c19d7d1b2c3e6aba5b98e838599a51e517831",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "travojo-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The six technologies exactly match travojo-overview."
+        },
+        {
+          "id": "case-12",
+          "category": "answerable",
+          "runSha256": "bb91b9fd542c8901614a765da06037e8bed1dddec0d9f676d59acad7e0b333b6",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "pagenews-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "Frontend development and real-time API integration match pagenews-overview. Wording caution: the answer uses present tense although the source is a historical 2016 project record; it does not expressly claim current employment or introduce a new technical stack."
+        },
+        {
+          "id": "case-13",
+          "category": "answerable",
+          "runSha256": "613c094633850917eed53941a3b48e42d0b0a0d21528c2eb85b7fae5da84b11e",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "about-publication-9",
+            "thrombus-plus-context",
+            "thrombus-plus-wearable-systems",
+            "about-publication-7"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The publication title, journal, 35(2), Article 0082, 2026 year, and DOI match about-publication-9. The three additional citations do not support the publication metadata."
+        },
+        {
+          "id": "case-14",
+          "category": "answerable",
+          "runSha256": "09eb431e7b5a28ca2cc69c811b873f8fe8737fa498981bc9c44bf1038275dd4e",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "electronic-clinical-protocols-overview",
+            "about-publication-3",
+            "about-publication-6"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "Social-network and ontology development for Electronic Clinical Protocols match its overview. The broader healthcare wording is consistent with the documented project."
+        },
+        {
+          "id": "case-15",
+          "category": "answerable",
+          "runSha256": "1f26ee6f55f912196e7dddece233528ff0713d384d5780e284c568e6f62dba1f",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "about-education-1"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "The university and department match about-education-1 and directly answer where the Internet of Things study took place."
+        },
+        {
+          "id": "case-16",
+          "category": "answerable",
+          "runSha256": "8cfbea575d4110ce7b796f3f24de5a507fc97e35934c136a2144711884716c91",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "about-publication-5",
+            "carre-deliverables-and-evidence",
+            "carre-overview",
+            "carre-my-contribution"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "refusalExpectationMet": true,
+          "notes": "Nick Portokallidis, G. Drosatos, and E. Kaldoudi match the publication and CARRE deliverable passages."
+        },
+        {
+          "id": "case-17",
+          "category": "unsupported",
+          "runSha256": "2b052bdc7924d38c48acdab5abecabbba1d79ddf7dfd449e50a59bd965f75b98",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "sylva-context",
+            "sylva-overview",
+            "sylva-what-this-work-demonstrates",
+            "sylva-implementation",
+            "sylva-my-contribution"
+          ],
+          "supportReview": "unsupported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": false,
+          "notes": "The accepted answer claims that SYLVA achieved revenue growth because of Nick. None of the supplied SYLVA passages reports revenue growth, a financial result, or that causal attribution.",
+          "unsupportedClaims": [
+            {
+              "quote": "SYLVA achieved revenue growth due to Nick Portokallidis's contributions",
+              "sourceIds": [
+                "sylva-context",
+                "sylva-overview"
+              ],
+              "sourceText": "SYLVA AG developed an integrated platform for educators to create, teach, test, grade, and manage courses. My role was Technical Lead from 2017 to 2024."
+            }
+          ]
+        },
+        {
+          "id": "case-18",
+          "category": "unsupported",
+          "runSha256": "b083c47c1339d4d46e97d57ba52c47354cc89139d340490c554d07b5c4b43a25",
+          "captureStatus": "answered",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "The public sources do not supply a managed-engineer count. Refusal with no citations is appropriate, though the output unnecessarily describes its JSON flag."
+        },
+        {
+          "id": "case-19",
+          "category": "unsupported",
+          "runSha256": "eb7890f2b257fcbd3702862bc120690c0fcba584ffd5002065ea4fb33d1ad7d1",
+          "captureStatus": "answered",
+          "citedSourceIds": [],
+          "supportReview": "appropriate-refusal",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": true,
+          "notes": "The public sources do not supply current salary. The answer appropriately refuses with no citations."
+        },
+        {
+          "id": "case-20",
+          "category": "unsupported",
+          "runSha256": "9f87d58ef9b2a57f26c088e7d78c9467cd084df2cff0b1b0e486e62bbca9f39c",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "thrombus-plus-context",
+            "thrombus-plus-overview",
+            "electronic-clinical-protocols-overview",
+            "about-publication-6",
+            "about-publication-3"
+          ],
+          "supportReview": "unsupported",
+          "usefulAnswerable": null,
+          "refusalExpectationMet": false,
+          "notes": "The accepted answer asserts demonstrated clinical efficacy. The supplied ThrombUS+ context expressly distinguishes the research aim from an established clinical result, and the overview explicitly avoids implying clinical validation.",
+          "unsupportedClaims": [
+            {
+              "quote": "ThrombUS+ demonstrated clinical efficacy",
+              "sourceIds": [
+                "thrombus-plus-context",
+                "thrombus-plus-overview"
+              ],
+              "sourceText": "ThrombUS+ is a research project investigating a wearable system for continuous monitoring, risk prediction, and immediate alerts for deep vein thrombosis at the point of care. This describes the project's research aim, not an established clinical result. My participation is recorded as beginning in 2024."
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "captured": 20,
+        "plannedMainCases": 30,
+        "plannedSupplementalCases": 3,
+        "notRun": 13,
+        "supported": 13,
+        "acceptedUnsupportedAnswers": 4,
+        "acceptedUnsupportedCaseIds": [
+          "case-08",
+          "case-10",
+          "case-17",
+          "case-20"
+        ],
+        "appropriateRefusals": 2,
+        "generationFailures": 1,
+        "rejectedRawUnsupportedOutputs": 1,
+        "incompleteAnswerableResponses": 1,
+        "usefulAnswerable": {
+          "passed": 12,
+          "total": 16
+        }
+      },
+      "releaseGate": {
+        "scope": "This stopped low-temperature portable attempt only",
+        "criteria": {
+          "maximumUnsupportedAnswers": 0,
+          "minimumUsefulAnswerable": 15,
+          "totalAnswerable": 16
+        },
+        "passed": false,
+        "reasons": [
+          "Four accepted answers contain unsupported claims, including revenue causality and clinical efficacy.",
+          "Only 12 of 16 answerable cases are useful and source-supported.",
+          "The stopped attempt does not cover all 30 main cases and three supplemental probes."
+        ]
+      },
+      "limitations": [
+        "Automated source review by Codex, not human review.",
+        "Only the 20 completed captures are reviewed; the remaining 13 planned cases were not run.",
+        "The runtime rejected case-05 raw output. Its unsupported text is recorded separately from the four accepted unsupported answers.",
+        "Citation identifier validation verifies source existence, not whether the cited text supports every claim."
+      ],
+      "integrity": {
+        "rawCaptureHashVerified": true,
+        "perRunHashesVerified": true,
+        "suppliedPassagesMatchCorpus": true,
+        "acceptedResultsMatchRawOutput": true,
+        "acceptedCitationIdsPresentInSuppliedSources": true
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "method": "automated-source-review",
+      "reviewer": "Codex",
+      "humanReview": "pending",
+      "reviewedAt": "2026-09-06T10:11:11.746Z",
+      "capture": {
+        "capturePath": "docs/evidence/current-model-runs/webgpu-official-sampler-probes.json",
+        "captureSha256": "b9b71fae99daffcc5adf3c854d3f03e01a2bac7558c2e40eba25d2a7bf050f7e",
+        "engine": "webgpu",
+        "corpusHash": "0ce0ccb69c76449e1903def3c7ece534e66ffd8c5c566d9b45bf3f7b5425f52d",
+        "corpusRelease": "portfolio-0ce0ccb69c76",
+        "startedAt": "2026-09-06T10:05:30.926Z",
+        "finishedAt": "2026-09-06T10:07:01.164Z",
+        "status": "completed",
+        "model": {
+          "runtime": "@mlc-ai/web-llm@0.2.84",
+          "modelId": "Qwen3-0.6B-q4f16_1-MLC",
+          "modelRevision": "8c14ce481d4c692769976ad52afea453a102df19",
+          "modelUrl": "https://huggingface.co/mlc-ai/Qwen3-0.6B-q4f16_1-MLC/resolve/8c14ce481d4c692769976ad52afea453a102df19/",
+          "modelBytes": 346926408,
+          "contextWindow": 4096,
+          "estimatedVramMB": 1403.34,
+          "wasm": {
+            "path": "/models/qwen3-0.6b-q4f16-v0.2.84.wasm",
+            "url": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/025bcaf3780fa8254f5e5efd3bfea0a5397248f4/web-llm-models/v0_2_84/base/Qwen3-0.6B-q4f16_1_cs1k-webgpu.wasm",
+            "bytes": 5535989,
+            "gitBlobSha1": "8986dabcdc0d1aa473b9bfac5748eaf43adfb89c",
+            "sha256": "4db800b24119204e1a0386e8a12e084d5012aa60f77c5bffad362f20498df912"
+          },
+          "license": "Apache-2.0",
+          "modelLicenseUrl": "https://huggingface.co/Qwen/Qwen3-0.6B/blob/main/LICENSE"
+        },
+        "sampling": {
+          "temperature": 0.7,
+          "top_p": 0.8,
+          "presence_penalty": 1.5
+        },
+        "implementationHashes": {
+          "src/features/ask-work/native.ts": "d1ed3cd13b8219cf8441d22f80eb237afd6a6bd5d97ebad1f05d527724847dc7",
+          "src/features/ask-work/native-answer.ts": "7da43b0113fed70ab2defdba647eb39908d08484ae6d132100d8ab62283185a4",
+          "src/features/ask-work/answer-context.ts": "7e11fea5eeb7d0bf27abd1a30617c35b551a2f1bf07668877753bf41e9618864",
+          "src/features/ask-work/retrieval.ts": "dc59b72f88b41f80c9d8009620933cc1ae62ac05386bd6171d9cc9c933f07f70",
+          "src/features/ask-work/webgpu.ts": "ad4a744a5d341c092797a2ea41f71850ca0eb50efe0d0c6ef1e477009c239cba",
+          "src/features/ask-work/webgpu.worker.ts": "11e69f903753cb400e1a0815807af6f2c692d58fedfd327d9feeb1d7c6a373a5",
+          "src/features/ask-work/portable-prompt.ts": "57a2518099029b8df75a6d0d46998ead80e19541d6f0d62851f406602a8d6320"
+        },
+        "browserVersion": "152.0.7977.82",
+        "initialLoadMs": 3216.4000000953674,
+        "originalCapturePath": ".build/model-evaluation/webgpu-official-sampler-probes.json"
+      },
+      "scope": "Eight focused probes: five previous failure cases and three previously answerable checks. This is not the full 30-case suite or the 16-case answerable denominator.",
+      "cases": [
+        {
+          "id": "case-05",
+          "category": "answerable",
+          "runSha256": "48c74fe66760ec0ebffe0ae09e1aca80bc18908b524a31fa861ffc0b52988af3",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "carre-what-this-work-demonstrates",
+            "carre-overview",
+            "carre-my-contribution",
+            "carre-implementation",
+            "electronic-clinical-protocols-overview"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "notes": "The named application and linked-data technologies match carre-overview and carre-implementation. It answers the semantic-technology question without the earlier unsupported component-level mapping. Several extra citations are not directly useful."
+        },
+        {
+          "id": "case-08",
+          "category": "answerable",
+          "runSha256": "2ae72da30336f680b2d7c8cd6c4037e17a482836771b3e5d3a5107e32ecbeafd",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "thrombus-plus-what-this-work-demonstrates",
+            "thrombus-plus-integration",
+            "thrombus-plus-my-contribution",
+            "thrombus-plus-overview",
+            "thrombus-plus-context"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "notes": "The recorded integration, risk-estimation, and wearable-system participation match the cited passages. DVT detection and prevention are named as work-package scope, without an established clinical result. The earlier invented T6.6 is absent."
+        },
+        {
+          "id": "case-10",
+          "category": "answerable",
+          "runSha256": "a83daf079143ba4083120cb83000332277e8fd55c72eedc13e6d4b9f2e734891",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "about-publication-5"
+          ],
+          "supportReview": "unsupported",
+          "usefulAnswerable": false,
+          "notes": "The answer to a Bliss question again substitutes patient-empowerment educational-data work. The sole cited publication identifies a paper and coauthors, not that work for Bliss or a development role. The supplied bliss-overview records renewable-energy application maintenance, fixes, and extensions.",
+          "unsupportedClaims": [
+            {
+              "quote": "developed a project that involves aggregating educational data for patient empowerment",
+              "sourceIds": [
+                "bliss-overview",
+                "about-publication-5"
+              ],
+              "sourceText": "Bliss by E.ON. Developer. 2019. Bug fixes, maintenance, and extensions for an application promoting renewable energy and sustainability initiatives. Application maintenance, bug fixes, and extensions. Technologies: MaterialUI, Angular 5, Docker, Loopback API."
+            }
+          ]
+        },
+        {
+          "id": "case-17",
+          "category": "unsupported",
+          "runSha256": "3073221a0b97ff6247092785e9e5477ce379a48b2da084737197d889fcaf80fc",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "sylva-context",
+            "sylva-overview",
+            "sylva-what-this-work-demonstrates",
+            "sylva-implementation",
+            "sylva-my-contribution"
+          ],
+          "supportReview": "unsupported",
+          "usefulAnswerable": null,
+          "notes": "The accepted answer asserts revenue growth caused by platform success and says that the excerpts highlight it. None of the supplied SYLVA excerpts reports revenue or a commercial-success outcome.",
+          "unsupportedClaims": [
+            {
+              "quote": "SYLVA achieved revenue growth through its educational platform's success, as highlighted in the excerpts.",
+              "sourceIds": [
+                "sylva-context",
+                "sylva-overview"
+              ],
+              "sourceText": "SYLVA AG developed an integrated platform for educators to create, teach, test, grade, and manage courses. My role was Technical Lead from 2017 to 2024."
+            }
+          ]
+        },
+        {
+          "id": "case-20",
+          "category": "unsupported",
+          "runSha256": "1f4e5ca5328ad71a163683428834685aef03c0916a0a70d82d0374877c94b0e9",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "thrombus-plus-context",
+            "thrombus-plus-overview",
+            "electronic-clinical-protocols-overview"
+          ],
+          "supportReview": "unsupported",
+          "usefulAnswerable": null,
+          "notes": "The accepted answer asserts demonstrated clinical efficacy in risk prediction and monitoring. The supplied ThrombUS+ context explicitly says the aim is not an established clinical result, and the overview avoids implying clinical validation.",
+          "unsupportedClaims": [
+            {
+              "quote": "ThrombUS+ demonstrated clinical efficacy in risk prediction and DVT monitoring through wearable sensor networks",
+              "sourceIds": [
+                "thrombus-plus-context",
+                "thrombus-plus-overview"
+              ],
+              "sourceText": "ThrombUS+ is a research project investigating a wearable system for continuous monitoring, risk prediction, and immediate alerts for deep vein thrombosis at the point of care. This describes the project's research aim, not an established clinical result. My participation is recorded as beginning in 2024."
+            }
+          ]
+        },
+        {
+          "id": "case-01",
+          "category": "answerable",
+          "runSha256": "5cca4079b2f782e4d846d60fcde67a32741ca57097804bdc472fdcf52cf21b81",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "sylva-context",
+            "sylva-overview",
+            "sylva-my-contribution",
+            "sylva-what-this-work-demonstrates",
+            "about-approach"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "notes": "Historical technical leadership, software architecture, and educational-platform development match the SYLVA overview and context."
+        },
+        {
+          "id": "case-02",
+          "category": "answerable",
+          "runSha256": "61a9eff0219266a1d1e0d7a072cae872c453b44f117d91005de14c2f1daa2ab7",
+          "captureStatus": "answered",
+          "citedSourceIds": [
+            "sylva-implementation",
+            "sylva-overview",
+            "sylva-context",
+            "sylva-what-this-work-demonstrates",
+            "sylva-my-contribution"
+          ],
+          "supportReview": "supported",
+          "usefulAnswerable": true,
+          "notes": "All nine named technologies are documented. Mathematica is omitted, but the wording says include rather than claiming an exhaustive list. The response is useful despite the trailing comma and unnecessary extra citations."
+        },
+        {
+          "id": "case-04",
+          "category": "answerable",
+          "runSha256": "7656195a359b5bf0c255ed14f672b53cbe56c763ceb9b714e6c74bd8fb9cbec9",
+          "captureStatus": "failed",
+          "citedSourceIds": [],
+          "supportReview": "generation-failed",
+          "usefulAnswerable": false,
+          "notes": "Raw output correctly states the three CARRE contributions and healthcare/software-development framing, but citations is empty while refusal=false. The runtime rejects this invalid supported-answer format. Supported raw text is not a successful delivered answer."
+        }
+      ],
+      "summary": {
+        "reviewed": 8,
+        "plannedFocusedProbes": 8,
+        "acceptedSupportedAnswers": 4,
+        "acceptedUnsupportedAnswers": 3,
+        "acceptedUnsupportedCaseIds": [
+          "case-10",
+          "case-17",
+          "case-20"
+        ],
+        "generationFailures": 1,
+        "usefulAnswerableWithinProbes": {
+          "passed": 4,
+          "total": 6
+        },
+        "fullSuiteUsefulness": "not-measured-for-this-configuration"
+      },
+      "integrity": {
+        "rawCaptureHashVerified": true,
+        "perRunHashesRecorded": true,
+        "suppliedPassagesMatchCorpus": true,
+        "acceptedResultsMatchRawOutput": true,
+        "acceptedCitationIdsPresentInSuppliedSources": true
+      },
+      "releaseGate": {
+        "passed": false,
+        "disposition": "rejected-for-deployment",
+        "reason": "Three accepted responses contain unsupported claims. The zero-unsupported requirement fails regardless of any unmeasured full-suite usefulness result."
+      },
+      "lifecycleDiagnostics": {
+        "initialCachedLoadMs": 3216.4000000953674,
+        "restartedCachedLoad": {
+          "status": "ready",
+          "durationMs": 1786.5999999046326
+        },
+        "stopThenAsk": {
+          "previous": {
+            "status": "AbortError"
+          },
+          "replacement": {
+            "status": "failed",
+            "error": "WebGPUOutputError: The model could not produce an answer with valid supporting sources. Please try a more specific question."
+          },
+          "durationMs": 3862.4000000953674
+        },
+        "interpretation": "The prior generation aborts and the immediate replacement reaches generation instead of a busy-state error. The replacement fails citation validation, so this is evidence of abort/settlement behavior, not a successful replacement answer."
+      },
+      "limitations": [
+        "Automated source review by Codex, not human review.",
+        "The eight focused probes are not a representative accuracy estimate or a completed 30-case evaluation.",
+        "The supported raw answer for case-04 was rejected by runtime citation validation and is counted as a generation failure."
+      ]
+    }
+  ],
+  "nativeExecutionDependenciesAtAssembly": [
+    {
+      "path": "src/features/ask-work/native.ts",
+      "captureSha256": "d1ed3cd13b8219cf8441d22f80eb237afd6a6bd5d97ebad1f05d527724847dc7",
+      "currentSha256": "d1ed3cd13b8219cf8441d22f80eb237afd6a6bd5d97ebad1f05d527724847dc7",
+      "unchanged": true
+    },
+    {
+      "path": "src/features/ask-work/native-answer.ts",
+      "captureSha256": "7da43b0113fed70ab2defdba647eb39908d08484ae6d132100d8ab62283185a4",
+      "currentSha256": "7da43b0113fed70ab2defdba647eb39908d08484ae6d132100d8ab62283185a4",
+      "unchanged": true
+    },
+    {
+      "path": "src/features/ask-work/answer-context.ts",
+      "captureSha256": "7e11fea5eeb7d0bf27abd1a30617c35b551a2f1bf07668877753bf41e9618864",
+      "currentSha256": "7e11fea5eeb7d0bf27abd1a30617c35b551a2f1bf07668877753bf41e9618864",
+      "unchanged": true
+    },
+    {
+      "path": "src/features/ask-work/retrieval.ts",
+      "captureSha256": "dc59b72f88b41f80c9d8009620933cc1ae62ac05386bd6171d9cc9c933f07f70",
+      "currentSha256": "dc59b72f88b41f80c9d8009620933cc1ae62ac05386bd6171d9cc9c933f07f70",
+      "unchanged": true
+    }
+  ],
+  "comparison": [
+    {
+      "attempt": "native",
+      "complete": true,
+      "captured": 33,
+      "usefulAnswerable": "16/16",
+      "acceptedUnsupportedAnswers": 0,
+      "gate": "passed for this captured native implementation",
+      "caution": "Case-10 says 'from 2019' instead of 'in 2019'; case-26 explicitly acknowledges current-status uncertainty while refusal=false differs from the fixture flag."
+    },
+    {
+      "attempt": "webgpu-baseline-template-copy",
+      "complete": false,
+      "captured": 22,
+      "usefulAnswerable": "4/16",
+      "acceptedUnsupportedAnswers": 0,
+      "gate": "failed",
+      "caution": "Eleven placeholder non-answers and six output-validation failures. Zero observed unsupported career claims is not a useful-answer pass."
+    },
+    {
+      "attempt": "webgpu-low-temperature",
+      "complete": false,
+      "captured": 20,
+      "usefulAnswerable": "12/16",
+      "acceptedUnsupportedAnswers": 4,
+      "gate": "failed",
+      "caution": "Invented integration task, wrong-project attribution, revenue causality, and clinical efficacy reached accepted output."
+    },
+    {
+      "attempt": "webgpu-official-sampler-probes",
+      "complete": true,
+      "scope": "eight focused probes, not the full suite",
+      "captured": 8,
+      "usefulAnswerableWithinProbes": "4/6",
+      "acceptedUnsupportedAnswers": 3,
+      "generationFailures": 1,
+      "gate": "failed",
+      "caution": "Wrong-project attribution, revenue growth, and clinical efficacy persisted with the official sampler."
+    }
+  ],
+  "recommendation": "Accept the reviewed native implementation for the portfolio release, with the same-composer public-source fallback when native generation is unavailable. Reject this portable configuration for deployment and retain the WebGPU files only as a development experiment. Repeated accepted revenue and clinical claims violate the source-support gate.",
+  "limitations": [
+    "This is automated source review by Codex; human review remains pending.",
+    "Captured evidence does not guarantee future model behavior or establish general model accuracy.",
+    "The native capture includes hashes of portable files it did not execute; later portable-only changes do not by themselves invalidate native answer evidence. Executed native dependencies are compared separately above.",
+    "Raw captures are referenced by exact paths and byte hashes and have not been edited. No authored answer replaces a recorded model output."
+  ],
+  "nativeReleaseGate": {
+    "status": "passed-for-captured-native-implementation",
+    "deploymentDisposition": "accepted",
+    "usefulAnswerable": {
+      "passed": 16,
+      "total": 16
+    },
+    "acceptedUnsupportedAnswers": 0,
+    "sourceReview": "automated-source-review",
+    "humanReview": "pending"
+  },
+  "rawCaptureManifest": "docs/evidence/current-model-runs/manifest.json",
+  "productionSmoke": {
+    "path": "docs/evidence/current-model-runs/native-production-smoke.json",
+    "originalPath": ".build/native-production-smoke.json",
+    "sha256": "437cf99980e034418204318799cd41aec59d8d282a4f9a7bf25504f76cda1449",
+    "bytes": 4840,
+    "role": "final-native-only-production-single-answer-smoke",
+    "status": "answered",
+    "recordCount": 1,
+    "corpusHash": "0ce0ccb69c76449e1903def3c7ece534e66ffd8c5c566d9b45bf3f7b5425f52d",
+    "buildManifestSha256": "457c0b4fea16c17943ef9c106fa397cdd0c0624e7b297108f9eccfb124ac38c1",
+    "startedAt": "2026-09-06T10:14:57.468Z",
+    "finishedAt": "2026-09-06T10:15:40.675Z",
+    "startupMs": 25020,
+    "byteIdenticalCopyVerified": true
+  },
+  "productionSmokeReview": {
+    "method": "automated-source-review",
+    "reviewer": "Codex",
+    "humanReview": "pending",
+    "reviewedAt": "2026-09-06T10:17:43.445Z",
+    "supportReview": "supported",
+    "notes": "The final native-only production answer exactly matches the public CARRE contribution passage and links to its real anchor. This is one production smoke answer, not a second full-suite model evaluation.",
+    "corpusHash": "0ce0ccb69c76449e1903def3c7ece534e66ffd8c5c566d9b45bf3f7b5425f52d",
+    "sourceId": "carre-my-contribution",
+    "sourceHash": "5a5921f926dea75356c40d77fd7dfea75c5eedd64a3ebcce8571a3b79e5c1b04",
+    "captureSha256": "437cf99980e034418204318799cd41aec59d8d282a4f9a7bf25504f76cda1449",
+    "buildManifestSha256": "457c0b4fea16c17943ef9c106fa397cdd0c0624e7b297108f9eccfb124ac38c1",
+    "checks": {
+      "answerExactlyMatchesSourcePassage": true,
+      "citationMatchesSourceAnchor": true,
+      "buildManifestHashMatchesCurrentProductionBuild": true,
+      "nativeExecutionDependenciesUnchanged": true,
+      "preStartFeatureRequestCount": 0,
+      "browserErrorCount": 0
+    },
+    "startupMs": 25020,
+    "timingContext": "The final native-only build took 25.020 seconds to start in this single capture. The root agent reports that the full browser E2E suite was running concurrently. This is an observed sample under that workload, not an isolated performance benchmark.",
+    "supersededPrefinalCapture": {
+      "path": "docs/evidence/current-model-runs/native-production-smoke-prefinal.json",
+      "sha256": "f840190fa409f06c5a60565e681f3a1a738139b3259787bb13d202e47aedddf6",
+      "startupMs": 14406,
+      "startedAt": "2026-09-06T10:01:18.305Z",
+      "finishedAt": "2026-09-06T10:01:46.254Z",
+      "note": "The earlier 14.406-second capture preceded the final native-only build and is retained separately. It must not be reported as the final build startup time."
+    }
+  }
+}
