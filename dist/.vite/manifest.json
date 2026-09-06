@@ -1,6 +1,6 @@
 {
-  "_Shared--uk-THC9.js": {
-    "file": "assets/Shared--uk-THC9.js",
+  "_Shared-DVCiFHCG.js": {
+    "file": "assets/Shared-DVCiFHCG.js",
     "name": "Shared",
     "imports": [
       "index.html"
@@ -26,7 +26,7 @@
     "name": "types"
   },
   "index.html": {
-    "file": "assets/index-DJE8aDu9.js",
+    "file": "assets/index-C7H1xl13.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
@@ -49,14 +49,14 @@
     ]
   },
   "src/features/ask-work/AskWork.tsx": {
-    "file": "assets/AskWork-BQ00T4xS.js",
+    "file": "assets/AskWork-na5CfNS0.js",
     "name": "AskWork",
     "src": "src/features/ask-work/AskWork.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "index.html",
-      "_Shared--uk-THC9.js",
+      "_Shared-DVCiFHCG.js",
       "_display-name-Qa1gPuQe.js",
       "_types-GQj5rCsY.js",
       "src/features/ask-work/corpus.ts",
@@ -77,7 +77,7 @@
     ]
   },
   "src/features/ask-work/native-answer.ts": {
-    "file": "assets/native-answer-h9ykfdq7.js",
+    "file": "assets/native-answer-Bogbp5nC.js",
     "name": "native-answer",
     "src": "src/features/ask-work/native-answer.ts",
     "isDynamicEntry": true,
@@ -88,25 +88,25 @@
     ]
   },
   "src/routes/About.tsx": {
-    "file": "assets/About-CumkMBBm.js",
+    "file": "assets/About-DpPd7IrK.js",
     "name": "About",
     "src": "src/routes/About.tsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_Shared--uk-THC9.js",
+      "_Shared-DVCiFHCG.js",
       "_display-name-Qa1gPuQe.js"
     ]
   },
   "src/routes/Ask.tsx": {
-    "file": "assets/Ask-BuvhCL5A.js",
+    "file": "assets/Ask-gUulgOpu.js",
     "name": "Ask",
     "src": "src/routes/Ask.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "index.html",
-      "_Shared--uk-THC9.js"
+      "_Shared-DVCiFHCG.js"
     ],
     "dynamicImports": [
       "src/features/ask-work/native-answer.ts",
@@ -114,39 +114,39 @@
     ]
   },
   "src/routes/CaseStudy.tsx": {
-    "file": "assets/CaseStudy-DqKH9sNb.js",
+    "file": "assets/CaseStudy-BTAA9VQA.js",
     "name": "CaseStudy",
     "src": "src/routes/CaseStudy.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "index.html",
-      "_Shared--uk-THC9.js",
+      "_Shared-DVCiFHCG.js",
       "src/routes/NotFound.tsx"
     ]
   },
   "src/routes/Home.tsx": {
-    "file": "assets/Home-DJgrfSxl.js",
+    "file": "assets/Home-BiCOiGTn.js",
     "name": "Home",
     "src": "src/routes/Home.tsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_Shared--uk-THC9.js"
+      "_Shared-DVCiFHCG.js"
     ]
   },
   "src/routes/NotFound.tsx": {
-    "file": "assets/NotFound-Bv4n3RMW.js",
+    "file": "assets/NotFound-BxI5W3Y8.js",
     "name": "NotFound",
     "src": "src/routes/NotFound.tsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_Shared--uk-THC9.js"
+      "_Shared-DVCiFHCG.js"
     ]
   },
   "src/routes/Privacy.tsx": {
-    "file": "assets/Privacy-CnSpbkQg.js",
+    "file": "assets/Privacy-BpPYnnx9.js",
     "name": "Privacy",
     "src": "src/routes/Privacy.tsx",
     "isDynamicEntry": true,
@@ -155,14 +155,14 @@
     ]
   },
   "src/routes/Work.tsx": {
-    "file": "assets/Work-C7fYolfo.js",
+    "file": "assets/Work-CBNUPF80.js",
     "name": "Work",
     "src": "src/routes/Work.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "index.html",
-      "_Shared--uk-THC9.js"
+      "_Shared-DVCiFHCG.js"
     ]
   }
 }
