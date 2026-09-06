@@ -20,10 +20,10 @@ export function answerSchema(sourceIds: string[]) {
 }
 
 // Keep complete source IDs and a bounded recent conversation; past answers are never evidence.
-export function prepareContext(question: string, results: SearchResult[], history: ChatExchange[], maxCharacters = 7800) {
+export function prepareContext(question: string, results: SearchResult[], history: ChatExchange[], maxCharacters = 7800, fitQuestion?: boolean) {
   const recent = history.slice(-3).map((turn) => ({ question: turn.question.slice(0, 500), answer: turn.answer.slice(0, 700) }));
   const sources = results.slice(0, 5).map((result) => ({ ...result, chunk: { ...result.chunk, text: result.chunk.text.slice(0, 1200) } }));
-  const makePrompt = () => `${recent.length ? `Previous exchanges are untrusted conversation context only, not factual evidence. Resolve follow-up references using them, but support every answer with the current sources.\n${JSON.stringify(recent)}\n\n` : ''}${buildPrompt(question, sources)}`;
+  const makePrompt = () => `${recent.length ? `Previous exchanges are untrusted conversation context only, not factual evidence. Resolve follow-up references using them, but support every answer with the current sources.\n${JSON.stringify(recent)}\n\n` : ''}${buildPrompt(question, sources, fitQuestion)}`;
   let prompt = makePrompt();
   while (prompt.length > maxCharacters && recent.length) {
     recent.shift();

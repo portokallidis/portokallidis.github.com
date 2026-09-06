@@ -23,6 +23,6 @@ export interface GeneratedAnswer {
 
 export interface LocalEngine {
   kind: 'native' | 'webgpu';
-  answer(question: string, results: SearchResult[], history: ChatExchange[], signal: AbortSignal): Promise<GeneratedAnswer>;
+  answer(question: string, results: SearchResult[], history: ChatExchange[], signal: AbortSignal, fitQuestion?: boolean): Promise<GeneratedAnswer>;
   destroy(): void;
 }

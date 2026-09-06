@@ -35,7 +35,7 @@ declare global {
   interface Window { __portfolioNative: NativeHarness }
 }
 
-async function withNativeAI (page: Page, scenario: 'ready' | 'loading' | 'error-first' | 'slow-answer' | 'invalid-answer' = 'ready') {
+async function withNativeAI (page: Page, scenario: 'ready' | 'loading' | 'error-first' | 'slow-answer' | 'invalid-answer' | 'refusal' = 'ready') {
   await page.addInitScript((scenario) => {
     Object.defineProperty(navigator, 'gpu', { configurable: true, value: undefined });
     const harness: NativeHarness = {
@@ -60,6 +60,7 @@ async function withNativeAI (page: Page, scenario: 'ready' | 'loading' | 'error-
         const source = supplied.sources.find(item => responseConstraint.properties.citations.items.enum.includes(item.id));
         if (!source) throw new Error('A native answer must receive retrieved source IDs.');
         const answer = JSON.stringify({ answer: source.text, citations: [source.id], refusal: false });
+        if (scenario === 'refusal') return JSON.stringify({ answer: 'The public sources do not provide this information.', citations: [], refusal: true });
         if (scenario === 'invalid-answer') return JSON.stringify({ answer: 'Unsupported test output.', citations: ['invented-source'], refusal: false });
         if (scenario === 'slow-answer') return new Promise<string>(resolve => { harness.finishAnswer = () => resolve(answer); });
         return answer;
@@ -102,6 +103,77 @@ async function sendQuestion (page: Page, text = question) {
   await expect(reply).toHaveAttribute('aria-busy', 'false');
   return reply;
 }
+
+test('Start waits for hydration so an early click cannot be lost', async ({ page }) => {
+  await withoutLocalAI(page);
+  let release!: () => void;
+  const hydration = new Promise<void>(resolve => { release = resolve; });
+  await page.route(/\/assets\/Ask-[^/]+\.js$/, async route => { await hydration; await route.continue(); });
+  try {
+    await page.goto(askPath, { waitUntil: 'commit' });
+    const start = page.getByRole('button', { name: 'Start', exact: true });
+    await expect(start).toBeVisible();
+    await expect(start).toBeDisabled();
+    release();
+    await expect(start).toBeEnabled();
+    await start.click();
+    await expect(page.getByRole('log', { name: 'Conversation' })).toBeVisible();
+  } finally { release(); }
+});
+
+test('employer fit questions offer related experience and contact without local AI', async ({ page }) => {
+  await withoutLocalAI(page);
+  await page.setViewportSize({ width: 375, height: 900 });
+  await startConversation(page);
+  for (const query of ['Are you suitable for asset management software?', 'Would you be a good fit for fintech?']) {
+    const reply = await sendQuestion(page, query);
+    await expect(reply).toContainText('Related experience');
+    await expect(reply.locator('a[href="/work/sylva#my-contribution"]')).toBeVisible();
+    await expect(reply.locator('a[href="/work/carre#what-this-work-demonstrates"]')).toBeVisible();
+    await expect(reply.locator('blockquote').first()).toBeVisible();
+    await expect(reply.getByRole('link', { name: 'Discuss your project' })).toHaveAttribute('href', '/#contact');
+    const contactBox = await reply.getByRole('link', { name: 'Discuss your project' }).boundingBox();
+    const transcriptBox = await page.getByRole('log', { name: 'Conversation' }).boundingBox();
+    expect(contactBox!.y + contactBox!.height).toBeLessThanOrEqual(transcriptBox!.y + transcriptBox!.height);
+  }
+  const followUp = await sendQuestion(page, 'Investment portfolios and reporting.');
+  await expect(followUp).toContainText('Related experience');
+  await expect(followUp).not.toContainText('Which requirements and workflows');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
+  const accessibility = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
+  expect(accessibility.violations).toEqual([]);
+  const contact = followUp.getByRole('link', { name: 'Discuss your project' });
+  await contact.focus();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/#contact$/);
+  await expect(page.locator('#contact')).toBeInViewport();
+});
+
+test('a native fit refusal offers original experience without presenting it as a cited answer', async ({ page }) => {
+  // This checks presentation of a controlled refusal, not the quality of a real model answer.
+  await withNativeAI(page, 'refusal');
+  await startConversation(page);
+  const reply = await sendQuestion(page, 'Are you suitable for asset management software?');
+  await expect(reply).toContainText('Related experience');
+  await expect(reply.getByRole('list', { name: 'Related portfolio sources' })).toContainText('SYLVA');
+  await expect(reply.getByRole('list', { name: 'Supporting sources' })).toHaveCount(0);
+  await expect(reply.getByRole('link', { name: 'Discuss your project' })).toBeVisible();
+  await expect(reply).not.toContainText('Insufficient evidence');
+});
+
+test('a trailing slash retains published metadata and active navigation after hydration', async ({ page, request }) => {
+  // Reproduce hosts that serve the prerendered document at a trailing-slash URL.
+  const response = await request.get(askPath);
+  await page.route('**' + askPath + '/', route => route.fulfill({ response }));
+  await page.goto(askPath + '/');
+  await page.getByRole('button', { name: 'Start', exact: true }).click();
+  await expect(page.getByRole('log', { name: 'Conversation' })).toBeVisible();
+  await expect(page).toHaveTitle('Ask about my work | nporto.com');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://nporto.com' + askPath);
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://nporto.com' + askPath);
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+  await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Ask', exact: true })).toHaveAttribute('aria-current', 'page');
+});
 
 test('every route serves unique complete HTML before JavaScript', async ({ browser, request }) => {
   const titles = new Set<string>();
@@ -367,7 +439,7 @@ test('empty questions and unsupported queries receive usable feedback', async ({
   await expect(page.getByRole('alert')).toContainText('Enter a question');
   await expect(page.getByRole('textbox', { name: 'Your question' })).toHaveAttribute('aria-invalid', 'true');
   const reply = await sendQuestion(page, 'qzxvnonexistentterm');
-  await expect(reply).toContainText('No matching evidence');
+  await expect(reply).toContainText('Not covered in this portfolio');
   await expect(reply.getByRole('list', { name: 'Supporting sources' })).toHaveCount(0);
   await expect(page.getByRole('alert')).toHaveCount(0);
 });

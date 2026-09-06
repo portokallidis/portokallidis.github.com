@@ -88,7 +88,7 @@ export async function beginWebGPU(signal: AbortSignal, onProgress: (progress: Mo
   }
   return {
     kind: 'webgpu',
-    async answer(question, results, history, requestSignal) {
+    async answer(question, results, history, requestSignal, fitQuestion) {
       if (destroyed || requestSignal.aborted) throw abortError();
       while (answering) {
         if (!activeSignal?.aborted) throw new Error('Wait for the current answer to finish.');
@@ -96,7 +96,7 @@ export async function beginWebGPU(signal: AbortSignal, onProgress: (progress: Mo
         if (destroyed || requestSignal.aborted) throw abortError();
       }
       let characters = 7800;
-      let context = prepareContext(question, results, history, characters);
+      let context = prepareContext(question, results, history, characters, fitQuestion);
       let id = ++nextId;
       const stop = () => send({ type: 'stop', id });
       requestSignal.addEventListener('abort', stop, { once: true });
@@ -114,7 +114,7 @@ export async function beginWebGPU(signal: AbortSignal, onProgress: (progress: Mo
             if (requestSignal.aborted || destroyed) throw abortError();
             if (reason instanceof Error && reason.name === 'ContextWindowSizeExceededError' && characters > 1600) {
               characters = Math.max(1600, Math.floor(characters * 0.6));
-              context = prepareContext(question, results, history, characters);
+              context = prepareContext(question, results, history, characters, fitQuestion);
               id = ++nextId;
               continue;
             }

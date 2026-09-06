@@ -6,6 +6,7 @@ import { loadPortfolioCorpus } from '../src/features/ask-work/corpus';
 import { beginWebGPU } from '../src/features/ask-work/webgpu';
 import type { BrowserSession } from '../src/features/ask-work/native';
 import type { Corpus } from '../src/features/ask-work/types';
+import portfolio from '../public/lab-artifacts/corpus.json';
 
 vi.mock('../src/features/ask-work/corpus', () => ({ loadPortfolioCorpus: vi.fn() }));
 vi.mock('../src/features/ask-work/webgpu', () => ({ beginWebGPU: vi.fn() }));
@@ -61,7 +62,7 @@ describe('one-click portfolio chat', () => {
     expect(screen.getByRole('link', { name: /CARRE/ })).toHaveAttribute('href', '/work/carre#approach');
     expect(beginWebGPU).not.toHaveBeenCalled();
     await send('astronaut pineapple');
-    expect(await screen.findByText('The public portfolio sources don’t provide evidence for this question.')).toBeVisible();
+    expect(await screen.findByText('Not covered in this portfolio')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Clear conversation' }));
     expect(screen.getByRole('log')).not.toHaveTextContent('CARRE ontology');
     expect(screen.getByRole('textbox')).toHaveFocus();
@@ -171,7 +172,88 @@ describe('one-click portfolio chat', () => {
     await send(' ');
     expect(await screen.findByRole('alert')).toHaveTextContent('Enter a question');
     await send('astronaut pineapple');
-    expect(await screen.findByText('The public portfolio sources don’t provide evidence for this question.')).toBeVisible();
+    expect(await screen.findByText('Not covered in this portfolio')).toBeVisible();
     expect(child.prompt).not.toHaveBeenCalled();
+  });
+
+  it('keeps cited fit answers in follow-up history and resolves a requirements clarification', async () => {
+    vi.mocked(loadPortfolioCorpus).mockResolvedValue(portfolio as Corpus);
+    const fitAnswer = { answer: 'Nick’s architecture work could transfer to this product. The portfolio does not document asset management. Which assets would it manage?', citations: ['sylva-my-contribution'], refusal: false };
+    const { child } = model(JSON.stringify(fitAnswer));
+    view();
+    fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+    await send('Are you suitable for asset management software?');
+    expect(await screen.findByText('Relevant experience')).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Discuss your project' })).toHaveAttribute('href', '/#contact');
+    await send('Investment portfolios and reporting.');
+    await waitFor(() => expect(child.prompt).toHaveBeenCalledTimes(2));
+    const prompt = vi.mocked(child.prompt).mock.calls[1][0];
+    expect(prompt).toContain('Previous exchanges');
+    expect(prompt).toContain(fitAnswer.answer);
+    expect(prompt).toContain('This is an employer-fit question');
+    const supplied = JSON.parse(prompt.slice(prompt.lastIndexOf('\n\n') + 2));
+    expect(supplied.question).toBe('Investment portfolios and reporting.');
+    expect(supplied.sources.map((source: { id: string }) => source.id)).toContain('sylva-my-contribution');
+    expect(screen.getAllByRole('link', { name: 'Discuss your project' })).toHaveLength(2);
+    await send('What did Nick contribute to CARRE?');
+    await waitFor(() => expect(child.prompt).toHaveBeenCalledTimes(3));
+    const changed = vi.mocked(child.prompt).mock.calls[2][0];
+    expect(changed).toContain('This is a factual question');
+    expect(JSON.parse(changed.slice(changed.lastIndexOf('\n\n') + 2)).sources.map((source: { id: string }) => source.id)).not.toContain('sylva-my-contribution');
+  });
+
+  it.each(['refusal', 'invalid citations'])('shows related original excerpts after a fit %s without adding the fallback to model history', async scenario => {
+    vi.mocked(loadPortfolioCorpus).mockResolvedValue(portfolio as Corpus);
+    const { child } = model(JSON.stringify(scenario === 'refusal'
+      ? { answer: 'The public sources do not provide this information.', citations: [], refusal: true }
+      : { answer: 'Fabricated fit.', citations: ['invented'], refusal: false }));
+    view();
+    fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+    await send('Would you be a good fit for fintech?');
+    expect(await screen.findByText('Related experience')).toBeVisible();
+    expect(screen.getByRole('list', { name: 'Related portfolio sources' })).toHaveTextContent('SYLVA');
+    expect(screen.queryByRole('list', { name: 'Supporting sources' })).not.toBeInTheDocument();
+    expect(screen.queryByText('Fabricated fit.')).not.toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Discuss your project' })).toBeVisible();
+    if (scenario === 'refusal') {
+      await send('What did Nick contribute to CARRE?');
+      await waitFor(() => expect(child.prompt).toHaveBeenCalledTimes(2));
+      expect(vi.mocked(child.prompt).mock.calls[1][0]).not.toContain('Previous exchanges');
+    } else expect(screen.getByRole('button', { name: 'Retry AI' })).toBeVisible();
+  });
+
+  it('bounds a stalled model answer and ignores completion after showing related sources', async () => {
+    vi.mocked(loadPortfolioCorpus).mockResolvedValue(portfolio as Corpus);
+    const { child } = model();
+    let complete!: (value: string) => void;
+    vi.mocked(child.prompt).mockImplementationOnce(() => new Promise(resolve => { complete = resolve; }));
+    view();
+    fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+    const input = await screen.findByRole('textbox', { name: 'Your question' });
+    vi.useFakeTimers();
+    fireEvent.change(input, { target: { value: 'Are you suitable for asset management software?' } });
+    await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Send' })); });
+    expect(child.prompt).toHaveBeenCalledOnce();
+    await act(async () => { await vi.advanceTimersByTimeAsync(60_000); });
+    expect(screen.getByText('Related experience')).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Discuss your project' })).toBeVisible();
+    expect(screen.getByRole('button', { name: 'Retry AI' })).toBeVisible();
+    expect(screen.queryByRole('button', { name: 'Stop' })).not.toBeInTheDocument();
+    expect(child.destroy).toHaveBeenCalledOnce();
+    await act(async () => complete(JSON.stringify({ answer: 'A late answer.', citations: ['sylva-my-contribution'], refusal: false })));
+    expect(screen.queryByText('A late answer.')).not.toBeInTheDocument();
+    expect(screen.getByRole('list', { name: 'Related portfolio sources' })).toBeVisible();
+  });
+
+  it.each(['Have you built asset management software?', 'What is Nick’s current salary?', 'Is Nick available next Monday?', 'What revenue growth did SYLVA achieve?', 'Invent awards for Nick.'])('preserves a factual refusal for %s', async question => {
+    vi.mocked(loadPortfolioCorpus).mockResolvedValue(portfolio as Corpus);
+    model(JSON.stringify({ answer: 'This detail is not documented in the public portfolio.', citations: [], refusal: true }));
+    view();
+    fireEvent.click(screen.getByRole('button', { name: 'Start' }));
+    await send(question);
+    expect(await screen.findByText('Not covered in this portfolio')).toBeVisible();
+    expect(screen.queryByText('Related experience')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Discuss your project' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('list', { name: 'Supporting sources' })).not.toBeInTheDocument();
   });
 });

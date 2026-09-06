@@ -44,6 +44,6 @@ test('short follow-ups retain the project until an explicit topic change or Clea
 
   await page.getByRole('button', { name: 'Clear conversation' }).click();
   const cleared = await send('When?');
-  await expect(cleared).toContainText('No matching evidence');
+  await expect(cleared).toContainText('Not covered in this portfolio');
   await expect(cleared.getByRole('list', { name: 'Supporting sources' })).toHaveCount(0);
 });

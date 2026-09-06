@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { Link } from 'react-router';
 import { Button } from '../../components/Button';
 import { Arrow } from '../../components/Shared';
 import { projects } from '../../content';
@@ -6,7 +7,7 @@ import { displayPreferredName } from '../../display-name';
 import type { StartupState } from '../../routes/Ask';
 import { loadPortfolioCorpus } from './corpus';
 import type { ChatExchange, LocalEngine } from './model-engine';
-import { retrieve, tokenize, validateQuestion } from './retrieval';
+import { isFitQuestion, retrieve, tokenize, validateQuestion } from './retrieval';
 import { parseAnswer, type Corpus, type CorpusChunk } from './types';
 import './ask-work.css';
 
@@ -19,6 +20,8 @@ interface Turn {
   sources: CorpusChunk[];
   excerpts: boolean;
   pending: boolean;
+  fitQuestion: boolean;
+  answered: boolean;
 }
 interface Props {
   engine: LocalEngine | null;
@@ -27,9 +30,9 @@ interface Props {
   onCancel: () => void;
 }
 
-export function Sources({ chunks, excerpts = false }: { chunks: CorpusChunk[]; excerpts?: boolean }) {
+export function Sources({ chunks, excerpts = false, related = false }: { chunks: CorpusChunk[]; excerpts?: boolean; related?: boolean }) {
   if (!chunks.length) return null;
-  return <ul className={excerpts ? 'chat-sources chat-excerpts' : 'chat-sources'} aria-label="Supporting sources">
+  return <ul className={excerpts ? 'chat-sources chat-excerpts' : 'chat-sources'} aria-label={related ? 'Related portfolio sources' : 'Supporting sources'}>
     {chunks.map(chunk => <li key={chunk.id}><a href={chunk.url}>{displayPreferredName(chunk.title)}<span className="chat-source-section"> / {chunk.section}</span><span aria-hidden="true"> ↗</span></a>
       {excerpts && <blockquote>{displayPreferredName(chunk.text.length > 420 ? chunk.text.slice(0, 420).trimEnd() + '…' : chunk.text)}</blockquote>}
     </li>)}
@@ -100,39 +103,64 @@ export default function AskWork({ engine, startup, onRetry, onCancel }: Props) {
     request.current = controller;
     const id = ++nextId.current;
     followBottom.current = true;
-    const history: ChatExchange[] = turns.filter(turn => !turn.pending && !turn.excerpts && turn.label === 'Answered locally')
+    const history: ChatExchange[] = turns.filter(turn => turn.answered)
       .slice(-3).map(turn => ({ question: turn.question, answer: turn.answer }));
     // Keep the last resolved topic across elliptical follow-ups, without indexing prior answers.
     const words = (value: string) => ' ' + value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim() + ' ';
     const questionWords = words(query);
     const explicitProject = projects.some(project => [project.name, project.slug].some(name => questionWords.includes(words(name))));
     const explicitIdentity = /\b(?:nick|nikolaos|portokallidis)\b/i.test(query);
-    const previousTopic = turns.at(-1)?.retrievalTopic;
+    const previousTurn = turns.at(-1);
+    const previousTopic = previousTurn?.retrievalTopic;
+    // Treat a declarative reply to the last fit question as requirements, without carrying a new question into that topic.
+    const clarification = previousTurn?.fitQuestion && /\?\s*$/.test(previousTurn.answer) && !query.includes('?')
+      && !/^(?:who|what|how|when|where|which|why|have|has|did|does|is|are|can|could|would|tell|ignore|forget|new|different)\b/i.test(query);
     const followUp = previousTopic && !explicitProject && !explicitIdentity && (tokenize(query).length === 0
-      || /\b(it|its|that|those|these|they|their|he|him|his|this project|there)\b/i.test(query));
+      || clarification || /\b(it|its|that|those|these|they|their|he|him|his|this project|there)\b/i.test(query));
     const retrievalTopic = followUp ? previousTopic : query;
     const searchQuery = followUp ? retrievalTopic + ' ' + query : query;
+    const fitQuestion = isFitQuestion(query) || Boolean(followUp && previousTurn?.fitQuestion
+      && (clarification || /^(?:it|this|that|we|our|the software|the product)\b/i.test(query)));
     const results = retrieve(searchQuery, corpus.chunks);
     setBusy(true);
-    setTurns(items => [...items, { id, question: query, retrievalTopic, answer: '', label: 'Finding sources', sources: [], excerpts: false, pending: true }]);
+    setTurns(items => [...items, { id, question: query, retrievalTopic, answer: '', label: 'Finding sources', sources: [], excerpts: false, pending: true, fitQuestion, answered: false }]);
     const finish = (update: Partial<Turn>) => {
       if (!controller.signal.aborted && request.current === controller) setTurns(items => items.map(turn => turn.id === id ? { ...turn, ...update, pending: false } : turn));
     };
+    const relatedExperience = () => finish({
+      label: 'Related experience',
+      answer: 'Explore Nick’s documented experience below.'
+        + (clarification ? '' : ' Which requirements and workflows matter most for your project?'),
+      sources: results.map(result => result.chunk), excerpts: true,
+    });
     try {
       if (!results.length) {
-        finish({ label: 'No matching evidence', answer: 'The public portfolio sources don’t provide evidence for this question.' });
+        finish({ label: 'Not covered in this portfolio', answer: 'This detail isn’t covered in the public portfolio. You can explore the project pages or get in touch to discuss it.' });
       } else if (!engine || failedEngine === engine) {
-        finish({ label: 'Source search', answer: 'Here are the matching passages from my public portfolio.', sources: results.map(result => result.chunk), excerpts: true });
+        if (fitQuestion) relatedExperience();
+        else finish({ label: 'Source search', answer: 'Here are the matching passages from my public portfolio.', sources: results.map(result => result.chunk), excerpts: true });
       } else {
         setTurns(items => items.map(turn => turn.id === id ? { ...turn, label: 'Thinking on your device' } : turn));
-        const generated = await engine.answer(query, results, history, controller.signal);
-        const answer = parseAnswer(generated.result, results.map(result => result.chunk.id));
-        finish({ label: answer.refusal ? 'Insufficient evidence' : 'Answered locally', answer: answer.answer, sources: answer.citations.map(citation => results.find(result => result.chunk.id === citation)!.chunk) });
+        const timeout = new AbortController();
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        try {
+          // Bound the UI wait even if the browser ignores cancellation of a stalled model call.
+          const generated = await Promise.race([
+            engine.answer(query, results, history, AbortSignal.any([controller.signal, timeout.signal]), fitQuestion),
+            new Promise<never>((_, reject) => {
+              timer = setTimeout(() => { reject(new Error('The local answer timed out.')); timeout.abort(); }, 60_000);
+            }),
+          ]);
+          const answer = parseAnswer(generated.result, results.map(result => result.chunk.id));
+          if (answer.refusal && fitQuestion) relatedExperience();
+          else finish({ label: answer.refusal ? 'Not covered in this portfolio' : fitQuestion ? 'Relevant experience' : 'Answered locally', answer: answer.answer, sources: answer.citations.map(citation => results.find(result => result.chunk.id === citation)!.chunk), answered: !answer.refusal });
+        } finally { clearTimeout(timer); }
       }
     } catch {
       if (!controller.signal.aborted) {
         setFailedEngine(engine);
-        finish({ label: 'Source search', answer: 'I couldn’t generate a reliable answer. Here are the matching public sources.', sources: results.map(result => result.chunk), excerpts: true });
+        if (fitQuestion) relatedExperience();
+        else finish({ label: 'Source search', answer: 'I couldn’t generate a reliable answer. Here are the matching public sources.', sources: results.map(result => result.chunk), excerpts: true });
       }
     } finally {
       if (request.current === controller) { request.current = null; setBusy(false); input.current?.focus({ preventScroll: true }); }
@@ -162,7 +190,8 @@ export default function AskWork({ engine, startup, onRetry, onCancel }: Props) {
         <article className="chat-answer" aria-label={'Reply to: ' + turn.question} aria-busy={turn.pending}>
           <p className="eyebrow">{turn.label}{turn.pending && '…'}</p>
           {turn.answer && <p className="chat-answer-text">{displayPreferredName(turn.answer)}</p>}
-          <Sources chunks={turn.sources} excerpts={turn.excerpts} />
+          {turn.fitQuestion && !turn.pending && <Link className="text-link" to="/#contact">Discuss your project<Arrow diagonal /></Link>}
+          <Sources chunks={turn.sources} excerpts={turn.excerpts} related={turn.fitQuestion && turn.excerpts} />
         </article>
       </div>)}
     </div>

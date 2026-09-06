@@ -20,7 +20,7 @@ async function hashes(directory: string, prefix = ''): Promise<Record<string, st
   return Object.fromEntries(Object.entries(entries).sort(([a], [b]) => a.localeCompare(b)));
 }
 try {
-  for (const path of ['src', 'public', 'scripts', 'index.html', 'package.json', 'package-lock.json', 'tsconfig.json', 'vite.config.ts', '.gitignore']) {
+  for (const path of ['src', 'public', 'scripts', 'index.html', 'CNAME', 'package.json', 'package-lock.json', 'tsconfig.json', 'vite.config.ts', '.gitignore']) {
     await cp(join(project, path), join(fixture, path), { recursive: true });
   }
   await symlink(join(project, 'node_modules'), join(fixture, 'node_modules'), process.platform === 'win32' ? 'junction' : 'dir');
@@ -30,6 +30,7 @@ try {
     ['vite/bin/vite.js', 'build', '--ssr', 'src/entry-server.tsx', '--outDir', '.build/server'],
     ['tsx/dist/cli.mjs', 'scripts/prerender.ts'],
     ['tsx/dist/cli.mjs', 'scripts/verify-dist.ts'],
+    ['tsx/dist/cli.mjs', 'scripts/copy-cname.ts'],
   ];
   for (const [tool, ...args] of steps) {
     const result = spawnSync(process.execPath, [join(fixture, 'node_modules', tool), ...args], { cwd: fixture, encoding: 'utf8', timeout: 60_000 });

@@ -10,3 +10,8 @@ export const routeManifest = [
   { path: '/privacy', title: 'Privacy | nporto.com', description: 'How this static portfolio and its optional local AI experiment handle browsing, questions, and professional contact.', kind: 'privacy' },
 ] as const;
 export const notFoundMeta = { title: 'Page not found | nporto.com', description: 'This page could not be found. Explore selected work or return to the portfolio homepage.' };
+
+export function publishedRoute(pathname: string) {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  return routeManifest.find(route => route.path === path);
+}

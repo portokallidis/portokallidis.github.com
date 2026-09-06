@@ -17,6 +17,7 @@ class FeatureBoundary extends Component<{ children: ReactNode; onFailure: () => 
 }
 
 export default function Ask() {
+  const [interactive, setInteractive] = useState(false);
   const [started, setStarted] = useState(false);
   const [engine, setEngine] = useState<LocalEngine | null>(null);
   const [state, setState] = useState<StartupState>({ phase: 'checking', progress: null, detail: 'Checking this browser…' });
@@ -29,7 +30,7 @@ export default function Ask() {
     activeEngine.current?.destroy();
     activeEngine.current = null;
   }
-  useEffect(() => dispose, []);
+  useEffect(() => { setInteractive(true); return dispose; }, []);
 
   function start() {
     dispose();
@@ -89,7 +90,7 @@ export default function Ask() {
     {started ? <FeatureBoundary onFailure={dispose}><Suspense fallback={<section className="chat-start panel" role="status"><p>Loading the chat…</p><Button className="button-secondary" onClick={cancel}>Cancel</Button></section>}><AskWork engine={engine} startup={state} onRetry={start} onCancel={cancel} /></Suspense></FeatureBoundary>
       : <section className="chat-start panel" aria-label="Start a conversation">
         <svg className="chat-symbol" viewBox="0 0 32 32" width="40" height="40" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true"><path d="M6 6h20v15H15l-7 5v-5H6z" strokeLinejoin="round" /><path d="M11 12h10M11 16h6" strokeLinecap="round" /></svg>
-        <h2>What would you like to know?</h2><p>Start to check your browser and prepare the chat.</p><Button onClick={start}>Start<Arrow /></Button>
+        <h2>What would you like to know?</h2><p>Start to check your browser and prepare the chat.</p><Button disabled={!interactive} onClick={start}>Start<Arrow /></Button>
         <p className="chat-download-note">Local AI works in supported desktop Chrome and may need a browser-managed model download. Other browsers can search the same portfolio sources. You can cancel while it loads.</p>
         <noscript><p>The chat needs JavaScript. You can explore all <a href="/work">project stories</a> directly.</p></noscript>
       </section>}

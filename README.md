@@ -16,7 +16,6 @@ npm run dev
 For the production Cloudflare Static Assets runtime:
 
 ```sh
-npm run verify:archive
 npm run check
 npm run evaluate:retrieval
 npm test
@@ -48,6 +47,9 @@ Chrome manages any native model download and reports progress.
 Visitors can cancel loading, stop answers, retry failures, and clear the conversation.
 Questions and replies stay in tab memory; browser-managed model files may remain cached.
 Generated replies include links to approved sources.
+Employer-fit questions connect documented experience to potential applications while distinguishing transferable skills from direct domain experience.
+When a fit answer cannot be generated, the chat shows related original passages and a Discuss your project link.
+Specific factual claims still require direct evidence.
 
 WebMCP progressively registers two read-only tools, search_portfolio and get_portfolio_source.
 Registration loads no corpus or model.
@@ -72,7 +74,7 @@ To repeat it locally, run npm run prepare:model before npx tsx scripts/evaluate-
 The experiment downloads approximately 353 MB of model assets and uses WebLLM, which is a development dependency.
 It is excluded from the production dependency graph, assets, and CSP.
 
-The original 49 website files remain byte-preserved under archive/legacy-site and excluded from deployment.
+The legacy-site archive and its checksum manifest were removed from the working tree and remain in Git history.
 Historical recorded artifacts are preserved under docs/evidence with verified file hashes.
 The new raw CV and private claim ledger remain outside the repository.
 No production upload or DNS changes are made by the verification workflow.

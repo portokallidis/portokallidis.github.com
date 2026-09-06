@@ -15,7 +15,6 @@
     "test:e2e": "playwright test",
     "preview:cloudflare": "wrangler dev --ip 127.0.0.1 --port 8787",
     "verify:dist": "tsx scripts/verify-dist.ts",
-    "verify:archive": "tsx scripts/verify-archive.ts",
     "record": "vite --host 127.0.0.1 --open /recorder.html",
     "review:runs": "tsx scripts/review-runs.ts",
     "evaluate:retrieval": "tsx scripts/build-content.ts",

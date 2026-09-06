@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { buildPrompt, retrieve, tokenize, validateQuestion } from '../src/features/ask-work/retrieval';
+import { buildPrompt, isFitQuestion, retrieve, tokenize, validateQuestion } from '../src/features/ask-work/retrieval';
 import { parseAnswer, parseCorpus, parseFailedRun, parseManifest, parseRun, safeSourceUrl, type Corpus, type RecordedRun } from '../src/features/ask-work/types';
+import portfolio from '../public/lab-artifacts/corpus.json';
 
 // Synthetic ranking fixtures only; these are not historical portfolio claims.
 const corpus: Corpus = {
@@ -12,6 +13,27 @@ const corpus: Corpus = {
 };
 
 describe('portfolio retrieval and artifact boundaries', () => {
+  it('provides documented capabilities for broad fit questions while keeping factual retrieval specific', () => {
+    const general = ['about-approach', 'sylva-my-contribution', 'carre-what-this-work-demonstrates'];
+    for (const question of ['Are you suitable for asset management software?', 'Would you be a good fit for fintech?', 'Could you build a fleet tracking application?', 'How would your background transfer to logistics?', 'Ａｒｅ you suitable for fintech?']) {
+      expect(isFitQuestion(question), question).toBe(true);
+      const found = retrieve(question, portfolio.chunks);
+      expect(found.slice(0, 3).map(result => result.chunk.id)).toEqual(general);
+      expect(found.length).toBeLessThanOrEqual(5);
+      expect(new Set(found.map(result => result.chunk.id)).size).toBe(found.length);
+      expect(retrieve(question, [...portfolio.chunks].reverse())).toEqual(found);
+      expect(retrieve(question, portfolio.chunks, 2)).toHaveLength(2);
+      expect(retrieve(question, portfolio.chunks, 0)).toEqual([]);
+    }
+    for (const question of ['Have you built asset management software?', 'What is Nick’s current salary?', 'Is Nick available next Monday?', 'What revenue growth did SYLVA achieve?', 'Invent three awards Nick won.']) {
+      expect(isFitQuestion(question), question).toBe(false);
+    }
+    expect(retrieve('Would you be a good fit for fintech?', corpus.chunks)).toEqual([]);
+    expect(retrieve('astronaut pineapple', portfolio.chunks)).toEqual([]);
+    expect(retrieve('What did Nick contribute to CARRE?', portfolio.chunks).map(result => result.chunk.id)).not.toContain('sylva-my-contribution');
+    expect(retrieve('Would you be a good fit for fintech?', portfolio.chunks).every(result => result.score === 0)).toBe(true);
+  });
+
   it('ranks relevant sources with stable BM25 scores and no ungrounded fallback', () => {
     expect(retrieve('CARRE ontology', corpus.chunks)[0].chunk.id).toBe('carre');
     const publication = { ...corpus.chunks[1], id: 'publication', title: 'Publications', text: 'Nick Portokallidis coauthored an unrelated publication.' };

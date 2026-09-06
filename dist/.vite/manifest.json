@@ -1,20 +1,25 @@
 {
-  "_Shared-DVCiFHCG.js": {
-    "file": "assets/Shared-DVCiFHCG.js",
+  "_Shared-C97vLGtU.js": {
+    "file": "assets/Shared-C97vLGtU.js",
     "name": "Shared",
     "imports": [
       "index.html"
     ]
   },
+  "_answer-policy-CaIio5mI.js": {
+    "file": "assets/answer-policy-CaIio5mI.js",
+    "name": "answer-policy"
+  },
   "_display-name-Qa1gPuQe.js": {
     "file": "assets/display-name-Qa1gPuQe.js",
     "name": "display-name"
   },
-  "_retrieval-BIvKaEfd.js": {
-    "file": "assets/retrieval-BIvKaEfd.js",
+  "_retrieval-i_yEqugU.js": {
+    "file": "assets/retrieval-i_yEqugU.js",
     "name": "retrieval",
     "imports": [
-      "_rolldown-runtime-hePW80VL.js"
+      "_rolldown-runtime-hePW80VL.js",
+      "_answer-policy-CaIio5mI.js"
     ]
   },
   "_rolldown-runtime-hePW80VL.js": {
@@ -26,7 +31,7 @@
     "name": "types"
   },
   "index.html": {
-    "file": "assets/index-C7H1xl13.js",
+    "file": "assets/index-CFulNQmY.js",
     "name": "index",
     "src": "index.html",
     "isEntry": true,
@@ -35,7 +40,7 @@
     ],
     "dynamicImports": [
       "src/features/ask-work/corpus.ts",
-      "_retrieval-BIvKaEfd.js",
+      "_retrieval-i_yEqugU.js",
       "src/routes/Home.tsx",
       "src/routes/Work.tsx",
       "src/routes/CaseStudy.tsx",
@@ -49,22 +54,22 @@
     ]
   },
   "src/features/ask-work/AskWork.tsx": {
-    "file": "assets/AskWork-na5CfNS0.js",
+    "file": "assets/AskWork-BfmVmrl-.js",
     "name": "AskWork",
     "src": "src/features/ask-work/AskWork.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "index.html",
-      "_Shared-DVCiFHCG.js",
+      "_Shared-C97vLGtU.js",
       "_display-name-Qa1gPuQe.js",
       "_types-GQj5rCsY.js",
       "src/features/ask-work/corpus.ts",
-      "_retrieval-BIvKaEfd.js",
+      "_retrieval-i_yEqugU.js",
       "src/routes/Ask.tsx"
     ],
     "css": [
-      "assets/AskWork-CH98NiMU.css"
+      "assets/AskWork-B8-clQe2.css"
     ]
   },
   "src/features/ask-work/corpus.ts": {
@@ -77,36 +82,37 @@
     ]
   },
   "src/features/ask-work/native-answer.ts": {
-    "file": "assets/native-answer-Bogbp5nC.js",
+    "file": "assets/native-answer-D4KJoRkj.js",
     "name": "native-answer",
     "src": "src/features/ask-work/native-answer.ts",
     "isDynamicEntry": true,
     "imports": [
       "_types-GQj5rCsY.js",
-      "_retrieval-BIvKaEfd.js",
+      "_retrieval-i_yEqugU.js",
       "src/routes/Ask.tsx"
     ]
   },
   "src/routes/About.tsx": {
-    "file": "assets/About-DpPd7IrK.js",
+    "file": "assets/About-D7LT6PgZ.js",
     "name": "About",
     "src": "src/routes/About.tsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_Shared-DVCiFHCG.js",
+      "_Shared-C97vLGtU.js",
       "_display-name-Qa1gPuQe.js"
     ]
   },
   "src/routes/Ask.tsx": {
-    "file": "assets/Ask-gUulgOpu.js",
+    "file": "assets/Ask-8Y3IPJVy.js",
     "name": "Ask",
     "src": "src/routes/Ask.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "index.html",
-      "_Shared-DVCiFHCG.js"
+      "_Shared-C97vLGtU.js",
+      "_answer-policy-CaIio5mI.js"
     ],
     "dynamicImports": [
       "src/features/ask-work/native-answer.ts",
@@ -114,39 +120,39 @@
     ]
   },
   "src/routes/CaseStudy.tsx": {
-    "file": "assets/CaseStudy-BTAA9VQA.js",
+    "file": "assets/CaseStudy-o2FyAwyD.js",
     "name": "CaseStudy",
     "src": "src/routes/CaseStudy.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "index.html",
-      "_Shared-DVCiFHCG.js",
+      "_Shared-C97vLGtU.js",
       "src/routes/NotFound.tsx"
     ]
   },
   "src/routes/Home.tsx": {
-    "file": "assets/Home-BiCOiGTn.js",
+    "file": "assets/Home-DE5Y3Vt3.js",
     "name": "Home",
     "src": "src/routes/Home.tsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_Shared-DVCiFHCG.js"
+      "_Shared-C97vLGtU.js"
     ]
   },
   "src/routes/NotFound.tsx": {
-    "file": "assets/NotFound-BxI5W3Y8.js",
+    "file": "assets/NotFound-Bn3ZZNph.js",
     "name": "NotFound",
     "src": "src/routes/NotFound.tsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_Shared-DVCiFHCG.js"
+      "_Shared-C97vLGtU.js"
     ]
   },
   "src/routes/Privacy.tsx": {
-    "file": "assets/Privacy-BpPYnnx9.js",
+    "file": "assets/Privacy-CKJoIrT0.js",
     "name": "Privacy",
     "src": "src/routes/Privacy.tsx",
     "isDynamicEntry": true,
@@ -155,14 +161,14 @@
     ]
   },
   "src/routes/Work.tsx": {
-    "file": "assets/Work-CBNUPF80.js",
+    "file": "assets/Work-CQRHHi8e.js",
     "name": "Work",
     "src": "src/routes/Work.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "index.html",
-      "_Shared-DVCiFHCG.js"
+      "_Shared-C97vLGtU.js"
     ]
   }
 }

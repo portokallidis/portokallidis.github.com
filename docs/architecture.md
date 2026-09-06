@@ -31,15 +31,19 @@ The native adapter clones the base session for each answer and measures context 
 No inference worker, portable runtime, or model asset is deployed.
 
 The corpus uses BM25 and up to five passages.
+Broad employer-fit questions include the engineering overview, SYLVA contribution, and CARRE transferable-experience passages alongside up to two keyword matches.
+Qualified connections to a proposed use case cite documented skills without claiming direct domain experience.
 Questions are bounded to 500 characters, conversation context to three recent exchanges, and model context to 4,096 tokens with response space reserved.
 Previous replies provide conversational context only and are never factual evidence.
-Unknown questions return an explicit lack-of-evidence response.
+Unsupported factual questions identify the detail not covered in the portfolio.
+Fit questions that cannot be answered show related original passages and a contact link.
 Generated HTML is never executed and source links are resolved from validated corpus records.
 
 Questions and replies remain in memory.
 Clear conversation cancels an active answer and clears visible history without discarding cached model files.
 Navigation destroys active sessions.
 Model failures preserve source search in the same composer.
+Answers that do not finish within 60 seconds are cancelled and fall back to source search.
 
 ## WebMCP and archive boundaries
 
@@ -48,8 +52,8 @@ Only an explicit tool invocation imports retrieval and loads the corpus; it neve
 Tools return approved public sources, not hidden chat state or contact actions.
 Browser origin isolation and same-origin tool permissions remain enabled.
 
-The original site remains unchanged under archive/legacy-site with its original SHA256 manifest.
-Neither the archive nor development recordings enter dist.
+The legacy-site archive and its SHA256 manifest were removed from the working tree and remain in Git history.
+Development recordings do not enter dist.
 The new raw CV and private editorial records remain outside the public repository.
 
 ## Browser AI choice

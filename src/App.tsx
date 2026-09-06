@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useRef } from 'react';
 import { Link, Navigate, Route, Routes, useLocation, useNavigationType } from 'react-router';
 import { contact } from './content';
-import { notFoundMeta, routeManifest, siteOrigin } from './route-manifest';
+import { notFoundMeta, publishedRoute, routeManifest, siteOrigin } from './route-manifest';
 import { registerPortfolioTools } from './webmcp';
 
 const Home = lazy(() => import('./routes/Home'));
@@ -17,7 +17,7 @@ function NavigationEffects () {
   const type = useNavigationType();
   const previous = useRef(location.pathname);
   useEffect(() => {
-    const published = routeManifest.find(route => route.path === location.pathname);
+    const published = publishedRoute(location.pathname);
     const meta = published ?? notFoundMeta;
     document.title = meta.title;
     for (const selector of ['meta[name="description"]', 'meta[property="og:description"]', 'meta[name="twitter:description"]']) document.querySelector(selector)?.setAttribute('content', meta.description);
@@ -27,7 +27,7 @@ function NavigationEffects () {
     if (published) {
       const canonical = existingCanonical ?? document.createElement('link');
       canonical.setAttribute('rel', 'canonical');
-      canonical.setAttribute('href', siteOrigin + location.pathname);
+      canonical.setAttribute('href', siteOrigin + published.path);
       if (!existingCanonical) document.head.append(canonical);
       existingRobots?.remove();
     } else {
@@ -37,7 +37,7 @@ function NavigationEffects () {
       robots.setAttribute('content', 'noindex');
       if (!existingRobots) document.head.append(robots);
     }
-    document.querySelector('meta[property="og:url"]')?.setAttribute('content', siteOrigin + location.pathname);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', siteOrigin + (published?.path ?? location.pathname));
     if (location.hash) {
       let anchor = location.hash.slice(1);
       try { anchor = decodeURIComponent(anchor); } catch { /* A malformed fragment has no matching content. */ }
@@ -54,7 +54,7 @@ function NavigationEffects () {
 export default function App () {
   useEffect(() => registerPortfolioTools(), []);
   const { pathname } = useLocation();
-  const published = routeManifest.some(route => route.path === pathname);
+  const published = publishedRoute(pathname);
   const navItems = [{ path: '/work', label: 'Work' }, { path: '/about', label: 'About' }, { path: '/lab/ask-about-my-work', label: 'Ask' }];
   return <>
     <a href="#main-content" className="skip-link" tabIndex={0}>Skip to content</a>

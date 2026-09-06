@@ -8,7 +8,6 @@ The application builds into `dist/`, which is the only deployment directory.
 
 ```sh
 npm ci
-npm run verify:archive
 npm run check
 npm run evaluate:retrieval
 npm test
@@ -56,10 +55,10 @@ Authenticate Wrangler to the intended Cloudflare account or configure a narrowly
 Confirm the account, Worker name, and domain before the production upload.
 Run `npx wrangler deploy` only after reviewing the release artifact and verification report.
 Configure `nporto.com` as the site's Cloudflare custom domain and verify the resulting DNS and TLS status in that account.
-The old `CNAME` is archived and is not a deployment instruction for the new host.
+The build copies the root `CNAME` into `dist/` for GitHub Pages.
 
-The verification workflow checks changes and retains browser reports; it does not publish or modify DNS.
-Successful runs also retain a `verified-static-site` artifact containing `dist/` and the archive hash manifest for 30 days.
+The local verification commands above do not publish or modify DNS.
+Retain the verified `dist/` artifact and browser reports with the release.
 Use a distinct Cloudflare project or preview version for staging so preview work cannot silently replace production.
 After publication, repeat route, redirect, header, canonical, contact, and 404 checks against the actual HTTPS domain.
 
