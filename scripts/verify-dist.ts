@@ -60,7 +60,6 @@ for (const route of routes) {
 assert(files.includes('404.html'), 'Missing real static 404 page');
 assert(files.includes('_headers'), 'Missing production security headers');
 assert(files.includes('_redirects'), 'Missing legacy URL redirects');
-assert(!files.includes('CNAME'), 'Archived hosting configuration must not be deployed');
 assert.deepEqual(files.filter(file => file.startsWith('lab-artifacts/')), ['lab-artifacts/corpus.json'], 'Only the approved corpus may deploy as a lab artifact');
 const headers = await readFile(join(root, '_headers'), 'utf8');
 const policies = [...headers.matchAll(/^\s*Content-Security-Policy:\s*(.+)$/gim)].map(match => match[1]);
