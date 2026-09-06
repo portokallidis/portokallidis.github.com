@@ -1,0 +1,1 @@
+import{n as e}from"./types-GQj5rCsY.js";var t;async function n(n){if(n.throwIfAborted(),t)return t;let r=await fetch(`/lab-artifacts/corpus.json`,{signal:n,credentials:`omit`,redirect:`error`,cache:`no-cache`});if(!r.ok)throw Error(`Could not load portfolio sources (${r.status}).`);let i=e(await r.json());return n.throwIfAborted(),t=i,i}export{n as loadPortfolioCorpus};

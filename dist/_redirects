@@ -1,0 +1,12 @@
+/projects /work 301
+/demos /lab/ask-about-my-work 301
+/demos/ /lab/ask-about-my-work 301
+/lab /lab/ask-about-my-work 301
+/lab/ /lab/ask-about-my-work 301
+/cv /about 301
+/cv/ /about 301
+/cv/index.html /about 301
+/cv/short_cv.html /about 301
+/academic /about 301
+/techstack /about 301
+/projects/* /work 301

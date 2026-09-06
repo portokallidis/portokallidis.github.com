@@ -1,0 +1,18 @@
+{
+  "runtime": "@mlc-ai/web-llm@0.2.84",
+  "modelId": "Qwen3-0.6B-q4f16_1-MLC",
+  "modelRevision": "8c14ce481d4c692769976ad52afea453a102df19",
+  "modelUrl": "https://huggingface.co/mlc-ai/Qwen3-0.6B-q4f16_1-MLC/resolve/8c14ce481d4c692769976ad52afea453a102df19/",
+  "modelBytes": 346926408,
+  "contextWindow": 4096,
+  "estimatedVramMB": 1403.34,
+  "wasm": {
+    "path": "/.build/model-assets/qwen3-0.6b-q4f16-v0.2.84.wasm",
+    "url": "https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/025bcaf3780fa8254f5e5efd3bfea0a5397248f4/web-llm-models/v0_2_84/base/Qwen3-0.6B-q4f16_1_cs1k-webgpu.wasm",
+    "bytes": 5535989,
+    "gitBlobSha1": "8986dabcdc0d1aa473b9bfac5748eaf43adfb89c",
+    "sha256": "4db800b24119204e1a0386e8a12e084d5012aa60f77c5bffad362f20498df912"
+  },
+  "license": "Apache-2.0",
+  "modelLicenseUrl": "https://huggingface.co/Qwen/Qwen3-0.6B/blob/main/LICENSE"
+}

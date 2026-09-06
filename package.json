@@ -1,0 +1,58 @@
+{
+  "name": "nikolaos-portokallidis-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.20.0"
+  },
+  "packageManager": "npm@10.9.3",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsx scripts/build-content.ts && vite build && vite build --ssr src/entry-server.tsx --outDir .build/server && tsx scripts/prerender.ts && tsx scripts/verify-dist.ts",
+    "check": "tsc --noEmit && eslint .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "preview:cloudflare": "wrangler dev --ip 127.0.0.1 --port 8787",
+    "verify:dist": "tsx scripts/verify-dist.ts",
+    "verify:archive": "tsx scripts/verify-archive.ts",
+    "record": "vite --host 127.0.0.1 --open /recorder.html",
+    "review:runs": "tsx scripts/review-runs.ts",
+    "evaluate:retrieval": "tsx scripts/build-content.ts",
+    "record:native": "tsx scripts/record-native.ts",
+    "deploy": "npm run build && wrangler deploy",
+    "prepare:model": "tsx scripts/download-model-assets.ts"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.8.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-markdown": "10.1.0",
+    "react-router": "7.18.3"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@eslint/js": "10.0.1",
+    "@mlc-ai/web-llm": "0.2.84",
+    "@playwright/test": "1.63.0",
+    "@tailwindcss/vite": "4.3.3",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.7",
+    "@types/node": "26.4.1",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "eslint": "10.10.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.12.0",
+    "jsdom": "29.1.1",
+    "tailwindcss": "4.3.3",
+    "tsx": "4.23.13",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.69.0",
+    "vite": "8.2.2",
+    "vitest": "5.0.0",
+    "wrangler": "4.129.0"
+  }
+}
