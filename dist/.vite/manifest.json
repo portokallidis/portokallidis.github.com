@@ -1,0 +1,168 @@
+{
+  "_Shared-D7ztU9tr.js": {
+    "file": "assets/Shared-D7ztU9tr.js",
+    "name": "Shared",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "_display-name-Qa1gPuQe.js": {
+    "file": "assets/display-name-Qa1gPuQe.js",
+    "name": "display-name"
+  },
+  "_retrieval-BIvKaEfd.js": {
+    "file": "assets/retrieval-BIvKaEfd.js",
+    "name": "retrieval",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js"
+    ]
+  },
+  "_rolldown-runtime-hePW80VL.js": {
+    "file": "assets/rolldown-runtime-hePW80VL.js",
+    "name": "rolldown-runtime"
+  },
+  "_types-GQj5rCsY.js": {
+    "file": "assets/types-GQj5rCsY.js",
+    "name": "types"
+  },
+  "index.html": {
+    "file": "assets/index-BlwdLeri.js",
+    "name": "index",
+    "src": "index.html",
+    "isEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js"
+    ],
+    "dynamicImports": [
+      "src/features/ask-work/corpus.ts",
+      "_retrieval-BIvKaEfd.js",
+      "src/routes/Home.tsx",
+      "src/routes/Work.tsx",
+      "src/routes/CaseStudy.tsx",
+      "src/routes/About.tsx",
+      "src/routes/Ask.tsx",
+      "src/routes/Privacy.tsx",
+      "src/routes/NotFound.tsx"
+    ],
+    "css": [
+      "assets/index-Brcj-hDt.css"
+    ]
+  },
+  "src/features/ask-work/AskWork.tsx": {
+    "file": "assets/AskWork-DPqRgrjG.js",
+    "name": "AskWork",
+    "src": "src/features/ask-work/AskWork.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "index.html",
+      "_Shared-D7ztU9tr.js",
+      "_display-name-Qa1gPuQe.js",
+      "_types-GQj5rCsY.js",
+      "src/features/ask-work/corpus.ts",
+      "_retrieval-BIvKaEfd.js",
+      "src/routes/Ask.tsx"
+    ],
+    "css": [
+      "assets/AskWork-CH98NiMU.css"
+    ]
+  },
+  "src/features/ask-work/corpus.ts": {
+    "file": "assets/corpus-BNb-DeGO.js",
+    "name": "corpus",
+    "src": "src/features/ask-work/corpus.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_types-GQj5rCsY.js"
+    ]
+  },
+  "src/features/ask-work/native-answer.ts": {
+    "file": "assets/native-answer-Cs517acX.js",
+    "name": "native-answer",
+    "src": "src/features/ask-work/native-answer.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "_types-GQj5rCsY.js",
+      "_retrieval-BIvKaEfd.js",
+      "src/routes/Ask.tsx"
+    ]
+  },
+  "src/routes/About.tsx": {
+    "file": "assets/About-DGMCHKgc.js",
+    "name": "About",
+    "src": "src/routes/About.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_Shared-D7ztU9tr.js",
+      "_display-name-Qa1gPuQe.js"
+    ]
+  },
+  "src/routes/Ask.tsx": {
+    "file": "assets/Ask-Cdk2cOi9.js",
+    "name": "Ask",
+    "src": "src/routes/Ask.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "index.html",
+      "_Shared-D7ztU9tr.js"
+    ],
+    "dynamicImports": [
+      "src/features/ask-work/native-answer.ts",
+      "src/features/ask-work/AskWork.tsx"
+    ]
+  },
+  "src/routes/CaseStudy.tsx": {
+    "file": "assets/CaseStudy-DtM_3J9r.js",
+    "name": "CaseStudy",
+    "src": "src/routes/CaseStudy.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "index.html",
+      "_Shared-D7ztU9tr.js",
+      "src/routes/NotFound.tsx"
+    ]
+  },
+  "src/routes/Home.tsx": {
+    "file": "assets/Home-DfrcCuM1.js",
+    "name": "Home",
+    "src": "src/routes/Home.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_Shared-D7ztU9tr.js"
+    ]
+  },
+  "src/routes/NotFound.tsx": {
+    "file": "assets/NotFound-C4y3HfmH.js",
+    "name": "NotFound",
+    "src": "src/routes/NotFound.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_Shared-D7ztU9tr.js"
+    ]
+  },
+  "src/routes/Privacy.tsx": {
+    "file": "assets/Privacy-DvivxhvO.js",
+    "name": "Privacy",
+    "src": "src/routes/Privacy.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "src/routes/Work.tsx": {
+    "file": "assets/Work-Ccpg-hSM.js",
+    "name": "Work",
+    "src": "src/routes/Work.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "index.html",
+      "_Shared-D7ztU9tr.js"
+    ]
+  }
+}
